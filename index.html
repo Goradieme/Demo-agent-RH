@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Démo interactive – Agents IA pour les RH | TechRepair Content</title>
+<meta name="description" content="Discutez avec notre assistant et découvrez en direct comment un agent IA peut automatiser le tri de CV, répondre aux salariés et planifier des entretiens."/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --blue:#1A56DB;--blue-dark:#1342b0;--blue-light:#EFF6FF;
+  --navy:#0F1B3D;--text:#1e293b;--muted:#64748b;
+  --border:#e2e8f0;--green:#10b981;--orange:#f97316;
+  --radius:12px;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Manrope',sans-serif;color:var(--text);background:#fff;font-size:15px;line-height:1.6}
+a{text-decoration:none;color:inherit}
+button{font-family:inherit}
+
+/* NAV */
+nav{display:flex;align-items:center;justify-content:space-between;padding:14px 32px;border-bottom:1px solid var(--border);position:sticky;top:0;background:#fff;z-index:50}
+.logo{display:flex;align-items:center;gap:10px}
+.logo-box{width:34px;height:34px;background:var(--navy);color:#fff;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:12px}
+.logo-text{font-weight:800;font-size:16px;color:var(--navy)}
+.logo-text span{color:var(--blue)}
+.nav-links{display:flex;align-items:center;gap:26px;font-weight:600;font-size:14px;color:var(--text)}
+.nav-links a:hover,.nav-links a.active{color:var(--blue)}
+.btn-nav{background:var(--blue);color:#fff;border:none;border-radius:8px;padding:10px 18px;font-weight:700;font-size:14px;cursor:pointer}
+.hamburger{display:none}
+@media(max-width:900px){.nav-links{display:none}.hamburger{display:flex}}
+
+/* HERO */
+.demo-hero{max-width:900px;margin:0 auto;padding:56px 24px 24px;text-align:center}
+.demo-badge{display:inline-flex;align-items:center;gap:6px;background:var(--blue-light);color:var(--blue-dark);font-weight:700;font-size:12.5px;padding:6px 14px;border-radius:999px;margin-bottom:18px}
+.demo-hero h1{font-size:clamp(26px,4vw,38px);font-weight:800;color:var(--navy);line-height:1.25;margin-bottom:14px}
+.demo-hero p{color:var(--muted);font-size:15.5px;max-width:640px;margin:0 auto}
+
+/* USE CASE CHIPS */
+.uc-row{max-width:900px;margin:26px auto 0;padding:0 24px;display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.uc-chip{background:#fff;border:1.5px solid var(--border);border-radius:10px;padding:10px 16px;font-weight:700;font-size:13.5px;color:var(--navy);cursor:pointer;display:flex;align-items:center;gap:8px;transition:.15s}
+.uc-chip:hover{border-color:var(--blue);color:var(--blue);background:var(--blue-light)}
+.uc-chip .ico{font-size:16px}
+
+/* CHAT WINDOW */
+.chat-wrap{max-width:760px;margin:32px auto 64px;padding:0 24px}
+.chat-card{border:1px solid var(--border);border-radius:16px;overflow:hidden;box-shadow:0 10px 40px rgba(15,27,61,.08)}
+.chat-head{background:var(--navy);color:#fff;padding:16px 20px;display:flex;align-items:center;gap:12px}
+.chat-head-dot{width:10px;height:10px;border-radius:50%;background:var(--green)}
+.chat-head-txt{font-weight:700;font-size:14.5px}
+.chat-head-sub{font-size:12px;color:#9fb0d4;font-weight:500}
+.chat-body{height:440px;overflow-y:auto;padding:20px;background:#F8FAFC;display:flex;flex-direction:column;gap:14px}
+.msg{max-width:85%;padding:12px 15px;border-radius:12px;font-size:14px;line-height:1.55;white-space:pre-wrap}
+.msg-bot{background:#fff;border:1px solid var(--border);align-self:flex-start;border-bottom-left-radius:3px}
+.msg-user{background:var(--blue);color:#fff;align-self:flex-end;border-bottom-right-radius:3px}
+.msg-bot strong{color:var(--navy)}
+.msg-typing{display:flex;gap:4px;align-self:flex-start;background:#fff;border:1px solid var(--border);border-radius:12px;padding:14px 16px;border-bottom-left-radius:3px}
+.msg-typing span{width:6px;height:6px;background:var(--muted);border-radius:50%;animation:blink 1.2s infinite}
+.msg-typing span:nth-child(2){animation-delay:.2s}
+.msg-typing span:nth-child(3){animation-delay:.4s}
+@keyframes blink{0%,80%,100%{opacity:.25}40%{opacity:1}}
+.chat-input-row{display:flex;gap:10px;padding:14px;border-top:1px solid var(--border);background:#fff}
+.chat-input-row input{flex:1;border:1.5px solid var(--border);border-radius:10px;padding:12px 14px;font-size:14px;font-family:inherit;outline:none}
+.chat-input-row input:focus{border-color:var(--blue)}
+.chat-send{background:var(--blue);color:#fff;border:none;border-radius:10px;padding:0 18px;font-weight:700;cursor:pointer;font-size:14px}
+.chat-send:disabled{opacity:.5;cursor:not-allowed}
+
+/* CTA BAND */
+.demo-cta{max-width:760px;margin:0 auto 70px;padding:0 24px}
+.demo-cta-card{background:var(--navy);border-radius:16px;padding:32px;text-align:center;color:#fff}
+.demo-cta-card h3{font-size:20px;font-weight:800;margin-bottom:8px}
+.demo-cta-card p{color:#c7d3ee;font-size:14px;margin-bottom:20px}
+.demo-cta-card button{background:var(--blue);color:#fff;border:none;border-radius:10px;padding:13px 26px;font-weight:700;font-size:14.5px;cursor:pointer}
+
+.disclaimer{max-width:760px;margin:0 auto 40px;padding:0 24px;font-size:12px;color:var(--muted);text-align:center}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">
+    <div class="logo-box">TRD</div>
+    <div class="logo-text">TechRepair<span>Content</span></div>
+  </div>
+  <div class="nav-links">
+    <a href="/">Accueil</a>
+    <a href="/services">Services</a>
+    <a href="/secteurs">Secteurs</a>
+    <a href="/apropos">À propos</a>
+    <a href="/blog">Blog</a>
+    <button class="btn-nav" onclick="window.location='/devis'">Obtenir un devis</button>
+  </div>
+  <button class="hamburger" aria-label="Menu">☰</button>
+</nav>
+
+<div class="demo-hero">
+  <div class="demo-badge">🤖 Démo interactive</div>
+  <h1>Discutez avec l'agent IA pour découvrir ce qu'il peut faire pour vos RH</h1>
+  <p>Choisissez un cas concret ci-dessous ou décrivez votre besoin. L'agent vous montre en direct, avec un exemple réaliste, comment l'automatisation peut s'appliquer à votre quotidien RH.</p>
+</div>
+
+<div class="uc-row">
+  <button class="uc-chip" data-msg="Peux-tu trier et scorer des CV pour un poste de développeur ?"><span class="ico">📄</span> Tri de CV</button>
+  <button class="uc-chip" data-msg="Un salarié te demande comment poser ses congés, réponds-lui."><span class="ico">💬</span> Assistant RH salariés</button>
+  <button class="uc-chip" data-msg="Peux-tu me proposer des créneaux et rédiger une invitation pour un entretien ?"><span class="ico">📅</span> Planification d'entretiens</button>
+</div>
+
+<div class="chat-wrap">
+  <div class="chat-card">
+    <div class="chat-head">
+      <div class="chat-head-dot"></div>
+      <div>
+        <div class="chat-head-txt">Agent RH — Démo en direct</div>
+        <div class="chat-head-sub">Propulsé par l'IA · réponses générées en temps réel</div>
+      </div>
+    </div>
+    <div class="chat-body" id="chatBody">
+      <div class="msg msg-bot">Bonjour 👋 Je suis un agent IA de démonstration. Cliquez sur un cas d'usage ci-dessus, ou décrivez une tâche RH que vous aimeriez automatiser (tri de CV, réponse aux salariés, planification d'entretiens...).</div>
+    </div>
+    <div class="chat-input-row">
+      <input type="text" id="chatInput" placeholder="Ex : Réponds à un salarié qui demande sa fiche de paie..." />
+      <button class="chat-send" id="chatSend">Envoyer</button>
+    </div>
+  </div>
+</div>
+
+<div class="demo-cta">
+  <div class="demo-cta-card">
+    <h3>Convaincu par ce que vous venez de voir ?</h3>
+    <p>On peut construire ce type d'agent, connecté à vos outils RH réels (SIRH, ATS, messagerie interne), pour votre entreprise.</p>
+    <button onclick="window.location='/devis'">Demander une démo personnalisée</button>
+  </div>
+</div>
+
+<div class="disclaimer">Démonstration à but illustratif : les réponses sont générées par IA sur des cas fictifs et n'accèdent à aucune donnée réelle de votre entreprise.</div>
+
+<script>
+const chatBody = document.getElementById('chatBody');
+const chatInput = document.getElementById('chatInput');
+const chatSend = document.getElementById('chatSend');
+
+// Le prompt système est désormais géré côté backend (/api/chat.js), pas ici,
+// pour ne jamais exposer la logique métier ni la clé API dans le navigateur.
+
+let history = [];
+
+function addMessage(text, sender) {
+  const div = document.createElement('div');
+  div.className = 'msg ' + (sender === 'user' ? 'msg-user' : 'msg-bot');
+  div.textContent = text;
+  chatBody.appendChild(div);
+  chatBody.scrollTop = chatBody.scrollHeight;
+  return div;
+}
+
+function showTyping() {
+  const div = document.createElement('div');
+  div.className = 'msg-typing';
+  div.id = 'typingIndicator';
+  div.innerHTML = '<span></span><span></span><span></span>';
+  chatBody.appendChild(div);
+  chatBody.scrollTop = chatBody.scrollHeight;
+}
+
+function hideTyping() {
+  const el = document.getElementById('typingIndicator');
+  if (el) el.remove();
+}
+
+async function sendMessage(text) {
+  if (!text.trim()) return;
+  addMessage(text, 'user');
+  history.push({ role: 'user', content: text });
+  chatInput.value = '';
+  chatSend.disabled = true;
+  showTyping();
+
+  try {
+    const response = await fetch('/api/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ messages: history })
+    });
+    const data = await response.json();
+    hideTyping();
+
+    const reply = data.reply || "Désolé, une erreur est survenue. Réessayez avec une autre question.";
+    addMessage(reply, 'bot');
+    history.push({ role: 'assistant', content: reply });
+  } catch (err) {
+    hideTyping();
+    addMessage("Désolé, une erreur est survenue pendant la génération de la réponse. Réessayez.", 'bot');
+    console.error(err);
+  } finally {
+    chatSend.disabled = false;
+    chatInput.focus();
+  }
+}
+
+chatSend.addEventListener('click', () => sendMessage(chatInput.value));
+chatInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') sendMessage(chatInput.value); });
+
+document.querySelectorAll('.uc-chip').forEach(btn => {
+  btn.addEventListener('click', () => sendMessage(btn.dataset.msg));
+});
+</script>
+
+</body>
+</html>
