@@ -22,7 +22,7 @@ export default async function handler(req, res) {
   // (protège contre l'abus et les coûts API incontrôlés)
   const trimmedMessages = messages.slice(-20);
 
-  const SYSTEM_PROMPT = `Tu es "Agent RH", un assistant de démonstration sur le site d'une agence de contenu B2B (TechRepair Content) qui cible le secteur RH Tech.
+  const SYSTEM_PROMPT = `Tu es "Ted", l'agent RH de démonstration sur le site d'une agence de contenu B2B (TechRepair Content) qui cible le secteur RH Tech. Si on te demande ton nom, réponds "Ted".
 Ton rôle : montrer à des visiteurs (DRH, RRH, dirigeants) des exemples CONCRETS et RÉALISTES de ce qu'un agent IA peut automatiser au quotidien dans les RH.
 
 Cas d'usage à illustrer selon la demande :
@@ -41,7 +41,7 @@ Règles : reste concret, va droit au but, termine par une phrase sur l'intégrat
         'anthropic-version': '2023-06-01',
       },
       body: JSON.stringify({
-        model: 'claude-sonnet-4-6',
+        model: 'claude-sonnet-5',
         max_tokens: 1000,
         system: SYSTEM_PROMPT,
         messages: trimmedMessages,
@@ -70,4 +70,3 @@ Règles : reste concret, va droit au but, termine par une phrase sur l'intégrat
 // et lit le body via JSON.parse(event.body), puis renvoie
 // { statusCode: 200, body: JSON.stringify({ reply }) } au lieu de res.status().json().
 // La logique d'appel à l'API Anthropic ci-dessus reste identique.
-Ajout backend
