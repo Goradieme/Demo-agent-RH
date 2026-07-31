@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Démo interactive : Agents IA pour les RH | TechRepair Content</title>
-<meta name="description" content="Discutez avec notre assistant et découvrez en direct comment un agent IA peut automatiser le tri de CV, répondre aux salariés et planifier des entretiens."/>
+<title>Démo interactive : Agents IA multi-secteurs | TechRepair Content</title>
+<meta name="description" content="Discutez avec Ted, notre agent IA, et découvrez en direct comment il peut automatiser des tâches en SaaS, e-commerce, cybersécurité, fintech et RH."/>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -97,14 +97,16 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:14px 3
 
 <div class="demo-hero">
   <div class="demo-badge">🤖 Démo interactive</div>
-  <h1>Discutez avec l'agent IA pour découvrir ce qu'il peut faire pour vos RH</h1>
-  <p>Choisissez un cas concret ci-dessous ou décrivez votre besoin. L'agent vous montre en direct, avec un exemple réaliste, comment l'automatisation peut s'appliquer à votre quotidien RH.</p>
+  <h1>Discutez avec Ted, l'agent IA qui automatise vos tâches métier</h1>
+  <p>Choisissez votre secteur ci-dessous ou décrivez votre besoin. Ted vous montre en direct, avec un exemple réaliste, comment l'automatisation peut s'appliquer à votre quotidien.</p>
 </div>
 
 <div class="uc-row">
-  <button class="uc-chip" data-msg="Peux-tu trier et scorer des CV pour un poste de développeur ?"><span class="ico">📄</span> Tri de CV</button>
-  <button class="uc-chip" data-msg="Un salarié te demande comment poser ses congés, réponds-lui."><span class="ico">💬</span> Assistant RH salariés</button>
-  <button class="uc-chip" data-msg="Peux-tu me proposer des créneaux et rédiger une invitation pour un entretien ?"><span class="ico">📅</span> Planification d'entretiens</button>
+  <button class="uc-chip" data-msg="Peux-tu trier et scorer des CV pour un poste de développeur ?"><span class="ico">👥</span> RH : Tri de CV</button>
+  <button class="uc-chip" data-msg="Peux-tu répondre à un client SaaS qui rencontre un bug de facturation récurrent ?"><span class="ico">🧑‍💻</span> SaaS : Support client</button>
+  <button class="uc-chip" data-msg="Peux-tu rédiger une réponse à un avis client négatif sur un retard de livraison ?"><span class="ico">🛒</span> E-commerce : Avis client</button>
+  <button class="uc-chip" data-msg="Peux-tu résumer les obligations NIS2 pour un RSSI qui découvre la réglementation ?"><span class="ico">🔒</span> Cybersécurité : Conformité</button>
+  <button class="uc-chip" data-msg="Peux-tu expliquer à un DAF ce que change DORA pour son établissement financier ?"><span class="ico">💳</span> Fintech : Réglementaire</button>
 </div>
 
 <div class="chat-wrap">
@@ -112,15 +114,15 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:14px 3
     <div class="chat-head">
       <div class="chat-head-dot"></div>
       <div>
-        <div class="chat-head-txt">Ted, l'agent RH en démo</div>
+        <div class="chat-head-txt">Ted, l'agent IA en démo</div>
         <div class="chat-head-sub">Propulsé par l'IA · réponses générées en temps réel</div>
       </div>
     </div>
     <div class="chat-body" id="chatBody">
-      <div class="msg msg-bot">Bonjour 👋 Je suis Ted, l'agent IA de démonstration de TechRepair Content. Cliquez sur un cas d'usage ci-dessus, ou décrivez une tâche RH que vous aimeriez automatiser (tri de CV, réponse aux salariés, planification d'entretiens...).</div>
+      <div class="msg msg-bot">Bonjour 👋 Je suis Ted, l'agent IA de démonstration de TechRepair Content. Cliquez sur un secteur ci-dessus, ou décrivez une tâche que vous aimeriez automatiser (support client, conformité réglementaire, tri de CV, gestion d'avis clients...).</div>
     </div>
     <div class="chat-input-row">
-      <input type="text" id="chatInput" placeholder="Ex : Réponds à un salarié qui demande sa fiche de paie..." />
+      <input type="text" id="chatInput" placeholder="Ex : Automatise le suivi des tickets support de mes clients SaaS..." />
       <button class="chat-send" id="chatSend">Envoyer</button>
     </div>
   </div>
@@ -129,7 +131,7 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:14px 3
 <div class="demo-cta">
   <div class="demo-cta-card">
     <h3>Convaincu par ce que vous venez de voir ?</h3>
-    <p>On peut construire ce type d'agent, connecté à vos outils RH réels (SIRH, ATS, messagerie interne), pour votre entreprise.</p>
+    <p>On peut construire ce type d'agent, connecté à vos outils métier réels (CRM, SIRH, ATS, helpdesk, messagerie interne), pour votre entreprise et votre secteur.</p>
     <button onclick="window.location='/devis'">Demander une démo personnalisée</button>
   </div>
 </div>
