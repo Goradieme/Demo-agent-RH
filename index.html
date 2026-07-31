@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Démo interactive – Agents IA pour les RH | TechRepair Content</title>
+<title>Démo interactive : Agents IA pour les RH | TechRepair Content</title>
 <meta name="description" content="Discutez avec notre assistant et découvrez en direct comment un agent IA peut automatiser le tri de CV, répondre aux salariés et planifier des entretiens."/>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
 <style>
@@ -22,9 +22,10 @@ button{font-family:inherit}
 /* NAV */
 nav{display:flex;align-items:center;justify-content:space-between;padding:14px 32px;border-bottom:1px solid var(--border);position:sticky;top:0;background:#fff;z-index:50}
 .logo{display:flex;align-items:center;gap:10px}
-.logo-box{width:34px;height:34px;background:var(--navy);color:#fff;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:12px}
-.logo-text{font-weight:800;font-size:16px;color:var(--navy)}
-.logo-text span{color:var(--blue)}
+.logo-box{width:34px;height:34px;background:var(--blue);color:#fff;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:12px}
+.logo-text{display:flex;flex-direction:column;line-height:1.15}
+.logo-text .logo-main{font-weight:800;font-size:15px;color:var(--text)}
+.logo-text .logo-sub{font-weight:500;font-size:12px;color:var(--muted)}
 .nav-links{display:flex;align-items:center;gap:26px;font-weight:600;font-size:14px;color:var(--text)}
 .nav-links a:hover,.nav-links a.active{color:var(--blue)}
 .btn-nav{background:var(--blue);color:#fff;border:none;border-radius:8px;padding:10px 18px;font-weight:700;font-size:14px;cursor:pointer}
@@ -81,7 +82,7 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:14px 3
 <nav>
   <div class="logo">
     <div class="logo-box">TRD</div>
-    <div class="logo-text">TechRepair<span>Content</span></div>
+    <div class="logo-text"><span class="logo-main">TechRepair</span><span class="logo-sub">Content</span></div>
   </div>
   <div class="nav-links">
     <a href="/">Accueil</a>
@@ -111,12 +112,12 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:14px 3
     <div class="chat-head">
       <div class="chat-head-dot"></div>
       <div>
-        <div class="chat-head-txt">Agent RH — Démo en direct</div>
+        <div class="chat-head-txt">Ted, l'agent RH en démo</div>
         <div class="chat-head-sub">Propulsé par l'IA · réponses générées en temps réel</div>
       </div>
     </div>
     <div class="chat-body" id="chatBody">
-      <div class="msg msg-bot">Bonjour 👋 Je suis un agent IA de démonstration. Cliquez sur un cas d'usage ci-dessus, ou décrivez une tâche RH que vous aimeriez automatiser (tri de CV, réponse aux salariés, planification d'entretiens...).</div>
+      <div class="msg msg-bot">Bonjour 👋 Je suis Ted, l'agent IA de démonstration de TechRepair Content. Cliquez sur un cas d'usage ci-dessus, ou décrivez une tâche RH que vous aimeriez automatiser (tri de CV, réponse aux salariés, planification d'entretiens...).</div>
     </div>
     <div class="chat-input-row">
       <input type="text" id="chatInput" placeholder="Ex : Réponds à un salarié qui demande sa fiche de paie..." />
