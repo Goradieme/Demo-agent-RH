@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Audit IA gratuit : votre site est-il visible par les agents IA ? | TechRepair Content</title>
+<meta name="description" content="Analysez gratuitement si votre site est prêt pour les agents IA (ChatGPT, Gemini, Copilot) : données structurées, balises, accessibilité aux robots IA. Résultat en quelques secondes."/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --blue:#1A56DB;--blue-dark:#1342b0;--blue-light:#EFF6FF;
+  --navy:#0F1B3D;--text:#1e293b;--muted:#64748b;
+  --border:#e2e8f0;--green:#10b981;--orange:#f97316;--purple:#7c3aed;
+  --radius:12px;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Manrope',sans-serif;color:var(--text);background:#fff;font-size:15px;line-height:1.6}
+a{text-decoration:none;color:inherit}
+nav{position:sticky;top:0;z-index:200;background:#fff;border-bottom:1px solid var(--border);padding:0 32px;display:flex;align-items:center;gap:20px;height:62px;}
+.logo{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.logo-box{width:36px;height:36px;background:var(--blue);border-radius:7px;display:grid;place-items:center;color:#fff;font-weight:800;font-size:13px;letter-spacing:-.5px}
+.logo-text{font-size:13px;font-weight:700;line-height:1.2;color:var(--navy)}
+.logo-text span{display:block;color:var(--muted);font-weight:500;font-size:11px}
+.nav-links{display:flex;gap:22px;margin-left:auto;align-items:center}
+.nav-links a{font-size:13.5px;font-weight:500;color:var(--muted);transition:color .2s}
+.nav-links a:hover,.nav-links a.active{color:var(--blue)}
+.nav-links a.active{border-bottom:2px solid var(--blue);padding-bottom:1px}
+.btn-nav{background:var(--blue);color:#fff;border:none;border-radius:8px;padding:9px 18px;font-weight:700;font-size:13.5px;cursor:pointer;white-space:nowrap;font-family:inherit}
+@media(max-width:600px){nav{padding:0 16px}.nav-links a:not(:last-child){display:none}}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+.hamburger span{display:block;width:24px;height:2px;background:var(--navy);border-radius:2px;transition:all .3s}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mobile-menu{display:none;position:fixed;top:62px;left:0;right:0;background:#fff;border-bottom:1px solid var(--border);padding:16px 24px;flex-direction:column;gap:4px;z-index:199;box-shadow:0 8px 24px rgba(0,0,0,.08)}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-size:15px;font-weight:600;color:var(--muted);padding:10px 0;border-bottom:1px solid var(--border);transition:color .2s}
+.mobile-menu a:last-of-type{border-bottom:none}
+.mobile-menu a:hover,.mobile-menu a.active{color:var(--blue)}
+.mobile-menu .btn-nav-mobile{margin-top:10px;background:var(--blue);color:#fff;border:none;border-radius:8px;padding:12px;font-weight:700;font-size:14px;cursor:pointer;font-family:inherit;width:100%}
+@media(max-width:768px){.hamburger{display:flex}.nav-links{display:none}}
+
+.breadcrumb{max-width:1100px;margin:0 auto;padding:18px 32px 0;font-size:12.5px;color:var(--muted)}
+.breadcrumb a{color:var(--muted)}
+.breadcrumb a:hover{color:var(--blue)}
+
+.article-hero{max-width:1100px;margin:0 auto;padding:24px 32px 0}
+.ah-badge{display:inline-flex;align-items:center;gap:5px;background:#F5F3FF;color:var(--purple);font-size:11px;font-weight:700;padding:4px 12px;border-radius:20px;margin-bottom:16px}
+.article-hero h1{font-size:34px;font-weight:800;line-height:1.2;color:var(--navy);max-width:820px;margin-bottom:16px}
+.ah-meta{display:flex;align-items:center;gap:12px;font-size:13px;color:var(--muted);margin-bottom:24px;flex-wrap:wrap}
+.ah-dot{width:4px;height:4px;border-radius:50%;background:var(--border)}
+.ah-cover{width:100%;border-radius:20px;overflow:hidden;margin-bottom:8px;border:1px solid var(--border)}
+.ah-cover img{width:100%;display:block}
+
+.layout{max-width:1100px;margin:0 auto;padding:40px 32px 56px;display:grid;grid-template-columns:1fr 300px;gap:44px;align-items:start}
+.content h2{font-size:24px;font-weight:800;color:var(--navy);margin:40px 0 14px;line-height:1.3}
+.content h3{font-size:18px;font-weight:800;color:var(--navy);margin:28px 0 10px;line-height:1.3}
+.content p{margin-bottom:14px;color:var(--text);font-size:15px;line-height:1.75}
+.content ul,.content ol{margin:0 0 16px 20px;color:var(--text)}
+.content li{margin-bottom:7px;line-height:1.7}
+.content strong{color:var(--navy)}
+.content em{color:var(--muted)}
+.content hr{border:none;border-top:1px solid var(--border);margin:36px 0}
+.intro-lead{font-size:16.5px;color:var(--muted);line-height:1.8;margin-bottom:20px}
+.toc-box{background:var(--blue-light);border:1px solid #c3d6f8;border-radius:16px;padding:22px 24px;margin:24px 0 36px}
+.toc-box h3{margin:0 0 12px;font-size:14px;color:var(--navy)}
+.toc-box ol{margin:0 0 0 18px}
+.toc-box li{font-size:13.5px;margin-bottom:6px}
+.toc-box a{color:var(--blue-dark);font-weight:600}
+.toc-box a:hover{text-decoration:underline}
+.callout{background:#f8fafc;border-left:3px solid var(--blue);border-radius:8px;padding:16px 20px;margin:18px 0;font-size:14px}
+.callout strong{display:block;margin-bottom:4px;color:var(--navy)}
+.benefit{font-size:13.5px;color:var(--muted);font-style:italic;margin:-6px 0 16px}
+table{width:100%;border-collapse:collapse;margin:18px 0 22px;font-size:13.5px}
+th,td{border:1px solid var(--border);padding:10px 12px;text-align:left;vertical-align:top}
+th{background:#f8fafc;color:var(--navy);font-weight:700}
+.case-card{border:1px solid var(--border);border-radius:14px;padding:20px 22px;margin-bottom:18px;background:#fafbfc}
+.case-card h3{margin-top:0}
+.faq-item{border-bottom:1px solid var(--border);padding:16px 0}
+.faq-item:last-child{border-bottom:none}
+.faq-item p.question{font-weight:800;color:var(--navy);margin-bottom:6px;font-size:15px}
+.conclusion-box{background:linear-gradient(135deg,var(--navy),#1e3a6e);border-radius:18px;padding:32px;margin-top:32px;color:#fff}
+.conclusion-box p{color:#cbd5e1}
+.conclusion-box strong{color:#fff}
+.conclusion-box .final-cta{display:inline-block;margin-top:14px;background:var(--blue);color:#fff;border-radius:8px;padding:12px 22px;font-weight:700;font-size:14px}
+
+.sidebar{display:flex;flex-direction:column;gap:20px;position:sticky;top:80px}
+.sidebar-card{background:#f8fafc;border:1px solid var(--border);border-radius:16px;padding:20px}
+.sidebar-card h3{font-size:12.5px;font-weight:800;color:var(--navy);margin-bottom:14px;text-transform:uppercase;letter-spacing:.4px}
+.mini-toc{display:flex;flex-direction:column;gap:9px}
+.mini-toc a{font-size:12.5px;color:var(--muted);line-height:1.5}
+.mini-toc a:hover{color:var(--blue)}
+.author-card{display:flex;gap:10px;align-items:center}
+.author-avatar{width:38px;height:38px;border-radius:50%;background:var(--blue);color:#fff;display:grid;place-items:center;font-weight:800;font-size:13px}
+.author-name{font-size:13px;font-weight:700;color:var(--navy)}
+.author-role{font-size:11.5px;color:var(--muted)}
+.guide-card{background:linear-gradient(135deg,#f0f5ff,#dce9ff);border-color:#c3d6f8}
+.guide-card p{font-size:12.5px;color:var(--muted);line-height:1.6;margin-bottom:14px}
+.guide-btn{display:block;text-align:center;background:var(--blue);color:#fff;border-radius:8px;padding:11px;font-size:13px;font-weight:700;transition:background .2s}
+.guide-btn:hover{background:var(--blue-dark)}
+
+.nl-band{background:var(--blue);padding:48px 32px}
+.nl-band-inner{max-width:700px;margin:0 auto;text-align:center}
+.nl-band h2{font-size:26px;font-weight:800;color:#fff;margin-bottom:10px}
+.nl-band p{color:rgba(255,255,255,.8);font-size:14px;margin-bottom:24px}
+.nl-band-form{display:flex;gap:10px;max-width:440px;margin:0 auto;flex-wrap:wrap}
+.nl-band-input{flex:1;border:none;border-radius:8px;padding:12px 16px;font-size:14px;font-family:inherit;outline:none;min-width:200px}
+.nl-band-btn{background:var(--navy);color:#fff;border:none;border-radius:8px;padding:12px 20px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;white-space:nowrap}
+.nl-band-note{font-size:11.5px;color:rgba(255,255,255,.6);margin-top:10px}
+
+.cta-band{background:var(--navy);padding:60px 32px}
+.cta-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr auto;gap:48px;align-items:center}
+.cta-band h2{font-size:28px;font-weight:800;color:#fff;margin-bottom:9px}
+.cta-band>div>p{color:#94a3b8;font-size:13.5px;margin-bottom:24px;max-width:380px}
+.cta-btns{display:flex;gap:10px;flex-wrap:wrap}
+.btn-white{background:#fff;color:var(--navy);border-radius:8px;padding:11px 20px;font-weight:700;font-size:13.5px;display:inline-flex;align-items:center;gap:7px;cursor:pointer;border:none;font-family:inherit}
+.btn-ghost-cta{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.3);border-radius:8px;padding:11px 20px;font-weight:700;font-size:13.5px;cursor:pointer;font-family:inherit}
+.btn-ghost-cta:hover{border-color:#fff}
+.cta-checks{display:flex;flex-direction:column;gap:11px;flex-shrink:0}
+.cta-check{display:flex;align-items:center;gap:9px;color:#cbd5e1;font-size:13px}
+.cta-ci{color:var(--green);font-weight:700}
+
+footer{background:var(--navy);border-top:1px solid rgba(255,255,255,.07);padding:44px 32px 26px}
+.footer-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr;gap:32px}
+.footer-brand p{color:#64748b;font-size:12px;margin-top:8px;max-width:185px;line-height:1.7}
+footer h4{font-size:10.5px;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:.5px;margin-bottom:13px}
+.flinks{list-style:none}
+.flinks li{margin-bottom:8px}
+.flinks a{color:#64748b;font-size:12px;transition:color .2s}
+.flinks a:hover{color:#fff}
+.fsocial{display:flex;gap:7px;margin-top:11px}
+.fsoc{width:29px;height:29px;border-radius:6px;background:rgba(255,255,255,.07);display:grid;place-items:center;font-size:11px;color:#94a3b8;transition:background .2s}
+.fsoc:hover{background:var(--blue);color:#fff}
+.footer-bottom{max-width:1100px;margin:24px auto 0;padding-top:16px;border-top:1px solid rgba(255,255,255,.07);display:flex;justify-content:space-between;color:#475569;font-size:11px;flex-wrap:wrap;gap:8px}
+
+@media(max-width:960px){.layout{grid-template-columns:1fr}.sidebar{position:static;display:grid;grid-template-columns:1fr 1fr;gap:16px}.cta-inner{grid-template-columns:1fr}.footer-inner{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.article-hero h1{font-size:26px}.sidebar{grid-template-columns:1fr}.nl-band-form{flex-direction:column}.footer-inner{grid-template-columns:1fr}}
+:root{--mono:'JetBrains Mono',ui-monospace,monospace}
+
+.audit-hero{background:radial-gradient(1000px 420px at 50% -15%, #1c2c5c 0%, var(--navy) 55%), var(--navy);padding:56px 24px 48px;position:relative;overflow:hidden;text-align:center}
+.audit-hero::before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.06) 1px, transparent 1px);background-size:26px 26px;mask-image:linear-gradient(to bottom, black, transparent 80%)}
+.audit-hero-inner{max-width:720px;margin:0 auto;position:relative}
+.audit-badge{display:inline-flex;align-items:center;gap:7px;background:rgba(26,86,219,.18);border:1px solid rgba(26,86,219,.4);color:#B7CBFA;font-weight:700;font-size:12.5px;padding:7px 15px;border-radius:999px;margin-bottom:18px;font-family:var(--mono)}
+.audit-hero h1{font-size:clamp(26px,3.8vw,38px);font-weight:800;color:#fff;line-height:1.25;margin-bottom:14px;letter-spacing:-.5px}
+.audit-hero h1 span{color:#7CA0F5}
+.audit-hero p{color:var(--muted-2);font-size:15.5px;max-width:560px;margin:0 auto}
+
+.audit-tool{max-width:720px;margin:-30px auto 0;padding:0 24px;position:relative;z-index:2}
+.audit-card{background:#fff;border:1px solid var(--border);border-radius:18px;box-shadow:0 24px 60px -20px rgba(15,27,61,.25);padding:28px}
+.audit-input-row{display:flex;gap:10px}
+.audit-input-row input{flex:1;border:1.5px solid var(--border);border-radius:10px;padding:14px 16px;font-size:15px;font-family:inherit;outline:none;transition:.15s}
+.audit-input-row input:focus{border-color:var(--blue)}
+.audit-btn{background:var(--blue);color:#fff;border:none;border-radius:10px;padding:0 24px;font-weight:700;cursor:pointer;font-size:15px;transition:.15s;white-space:nowrap}
+.audit-btn:hover:not(:disabled){background:var(--blue-dark)}
+.audit-btn:disabled{opacity:.5;cursor:not-allowed}
+.audit-hint{font-size:12px;color:var(--muted);margin-top:10px}
+.audit-error{margin-top:14px;background:#FEF2F2;border:1px solid #FECACA;color:#B91C1C;border-radius:10px;padding:12px 14px;font-size:13.5px;display:none}
+
+.audit-loading{display:none;margin-top:22px;font-family:var(--mono);font-size:13px;color:var(--muted)}
+.audit-loading .dots span{animation:blink 1.2s infinite;opacity:.3}
+.audit-loading .dots span:nth-child(2){animation-delay:.2s}
+.audit-loading .dots span:nth-child(3){animation-delay:.4s}
+@keyframes blink{0%,100%{opacity:.25}50%{opacity:1}}
+
+.audit-results{display:none;margin-top:26px}
+.audit-score-row{display:flex;align-items:center;gap:20px;padding:18px;background:var(--blue-light);border-radius:14px;margin-bottom:18px}
+.audit-score-num{font-size:40px;font-weight:800;color:var(--blue-dark);font-family:var(--mono);line-height:1}
+.audit-score-txt b{display:block;color:var(--navy);font-size:14.5px;font-weight:700}
+.audit-score-txt span{display:block;color:var(--muted);font-size:12.5px}
+.audit-checks{display:flex;flex-direction:column;gap:1px;border:1px solid var(--border);border-radius:12px;overflow:hidden}
+.audit-check{display:flex;gap:12px;padding:14px 16px;background:#fff;border-bottom:1px solid var(--border)}
+.audit-check:last-child{border-bottom:none}
+.audit-check .ic{flex-shrink:0;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;margin-top:1px}
+.audit-check.pass .ic{background:#DCFCE7;color:#16A34A}
+.audit-check.fail .ic{background:#FEE2E2;color:#DC2626}
+.audit-check .txt b{display:block;font-size:13.5px;color:var(--navy);font-weight:700;margin-bottom:2px}
+.audit-check .txt span{display:block;font-size:12.5px;color:var(--muted);font-family:var(--mono)}
+.audit-cta{margin-top:22px;background:linear-gradient(135deg,var(--navy),var(--navy-2,#16234E));border-radius:14px;padding:22px;text-align:center}
+.audit-cta p{color:#c7d3ee;font-size:13.5px;margin-bottom:14px}
+.audit-cta a{display:inline-block;background:var(--blue);color:#fff;border-radius:10px;padding:12px 22px;font-weight:700;font-size:14px;text-decoration:none}
+
+.audit-disclaimer{max-width:720px;margin:20px auto 0;padding:0 24px;font-size:12px;color:var(--muted);text-align:center}
+
+.audit-explain{max-width:720px;margin:56px auto 0;padding:0 24px}
+.audit-explain h2{font-size:20px;font-weight:800;color:var(--navy);margin-bottom:16px;text-align:center}
+.audit-explain-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.audit-explain-item{border:1px solid var(--border);border-radius:12px;padding:16px}
+.audit-explain-item b{display:block;font-size:13.5px;color:var(--navy);margin-bottom:5px}
+.audit-explain-item span{font-size:12.5px;color:var(--muted);line-height:1.5}
+@media(max-width:600px){.audit-explain-grid{grid-template-columns:1fr}.audit-input-row{flex-direction:column}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">
+    <div class="logo-box">TRD</div>
+    <div class="logo-text"><span class="logo-main">TechRepair</span><span class="logo-sub">Content</span></div>
+  </div>
+  <div class="nav-links">
+    <a href="/">Accueil</a>
+    <a href="/services">Services</a>
+    <a href="/secteurs">Secteurs</a>
+    <a href="/apropos">À propos</a>
+    <a href="/blog">Blog</a>
+    <a href="https://demo-agent-rh.vercel.app" class="btn-demo"><span class="star">★</span>Démo<span class="btn-demo-badge">Nouveau</span></a>
+    <button class="btn-nav" onclick="window.location='/devis'">Obtenir un devis</button>
+  </div>
+  <button class="hamburger" aria-label="Menu">☰</button>
+</nav>
+
+<section class="audit-hero">
+  <div class="audit-hero-inner">
+    <div class="audit-badge">🔍 Outil gratuit</div>
+    <h1>Votre site est-il visible par <span>les agents IA</span> ?</h1>
+    <p style="color:rgba(255,255,255,.82)">Collez votre URL. On analyse réellement votre page (pas une simulation) : données structurées, balises, accessibilité aux robots IA. Résultat en quelques secondes.</p>
+  </div>
+</section>
+
+<div class="audit-tool">
+  <div class="audit-card">
+    <div class="audit-input-row">
+      <input type="text" id="auditUrl" placeholder="https://votre-site.com" />
+      <button class="audit-btn" id="auditBtn">Analyser</button>
+    </div>
+    <div class="audit-hint">Gratuit, aucune inscription. On ne stocke pas votre URL.</div>
+    <div class="audit-error" id="auditError"></div>
+    <div class="audit-loading" id="auditLoading">
+      <span id="auditLoadingText">→ Récupération de la page…</span><span class="dots"><span>.</span><span>.</span><span>.</span></span>
+    </div>
+    <div class="audit-results" id="auditResults">
+      <div class="audit-score-row">
+        <div class="audit-score-num" id="scoreNum">0%</div>
+        <div class="audit-score-txt">
+          <b id="scoreLabel">Score de préparation IA</b>
+          <span id="scoreSub"></span>
+        </div>
+      </div>
+      <div class="audit-checks" id="auditChecks"></div>
+      <div class="audit-cta">
+        <p>Ce diagnostic est indicatif et couvre les signaux techniques de base. Un audit complet va plus loin (contenu, stratégie de mots-clés, plan d'action priorisé).</p>
+        <a href="/devis">Demander un audit complet gratuit →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="audit-disclaimer">Cet outil analyse le code source public de la page fournie (balises, JSON-LD, robots.txt). Il ne reflète pas un score officiel d'un moteur IA et ne remplace pas un audit complet.</div>
+
+<div class="audit-explain">
+  <h2>Ce que l'outil vérifie réellement</h2>
+  <div class="audit-explain-grid">
+    <div class="audit-explain-item"><b>Balises title & meta description</b><span>Les bases de tout référencement, toujours pertinentes même à l'ère de l'IA.</span></div>
+    <div class="audit-explain-item"><b>Données structurées JSON-LD</b><span>Ce qu'un agent IA lit en priorité pour comprendre le contenu de votre page.</span></div>
+    <div class="audit-explain-item"><b>Balisage FAQPage & Product</b><span>Directement liés à la capacité d'un agent à citer votre contenu dans une réponse.</span></div>
+    <div class="audit-explain-item"><b>Accessibilité aux robots IA</b><span>Vérifie si votre robots.txt bloque GPTBot, ClaudeBot ou les autres robots IA majeurs.</span></div>
+  </div>
+</div>
+
+<div class="nl-band">
+  <div class="nl-band-inner">
+    <h2>📩 La newsletter SEO Tech B2B</h2>
+    <p>Chaque semaine, une stratégie actionnable et une opportunité SEO dans votre secteur.</p>
+    <div class="nl-band-form">
+      <input type="email" class="nl-band-input" id="nlBandEmail" placeholder="votre@email.com"/>
+      <button class="nl-band-btn" id="nlBandBtn" type="button">S'abonner →</button>
+    </div>
+    <p id="nlBandMsg" style="display:none;font-size:12px;color:#fff;margin-top:8px"></p>
+    <p class="nl-band-note">✓ Gratuit · ✓ Sans spam · ✓ Désabonnement en 1 clic</p>
+  </div>
+</div>
+
+<div class="cta-band">
+  <div class="cta-inner">
+    <div>
+      <h2>Du contenu qui performe, pas qui remplit des pages</h2>
+      <p style="color:rgba(255,255,255,.82)">Vous voulez une stratégie de contenu sur mesure pour votre secteur tech B2B ? Parlons-en.</p>
+      <div class="cta-btns">
+        <button class="btn-white" onclick="window.location='/devis'">Obtenir un devis gratuit →</button>
+        <button class="btn-ghost-cta" onclick="window.location='/services'">Voir nos services →</button>
+      </div>
+    </div>
+    <div class="cta-checks">
+      <div class="cta-check"><span class="cta-ci">✓</span> Réponse sous 24h</div>
+      <div class="cta-check"><span class="cta-ci">✓</span> Audit SEO gratuit</div>
+      <div class="cta-check"><span class="cta-ci">✓</span> Sans engagement</div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="logo"><div class="logo-box">TRD</div><div class="logo-text" style="color:#fff">TechRepair<span>Content</span></div></div>
+      <p>Rédaction SEO & technique pour entreprises SaaS, Tech et E-commerce.</p>
+    </div>
+    <div><h4>Navigation</h4><ul class="flinks"><li><a href="/">Accueil</a></li><li><a href="/apropos">À propos</a></li><li><a href="/services">Services</a></li><li><a href="/secteurs">Secteurs</a></li><li><a href="/blog">Blog</a></li></ul></div>
+    <div><h4>Ressources</h4><ul class="flinks"><li><a href="/faq">FAQ</a></li><li><a href="/confidentialite">Confidentialité</a></li><li><a href="/mentions-legales">Mentions légales</a></li></ul></div>
+    <div>
+      <h4>Contact</h4>
+      <ul class="flinks"><li><a href="mailto:contact@techrepaircontent.com">contact@techrepaircontent.com</a></li><li><a href="#">Réponse sous 24h</a></li></ul>
+      <div class="fsocial"><a class="fsoc" href="https://www.linkedin.com/in/techrepair-content" target="_blank" rel="noopener">in</a><a class="fsoc" href="mailto:contact@techrepaircontent.com">✉</a></div>
+    </div>
+    <div><h4>Basé en France</h4><div style="font-size:22px">🇫🇷</div></div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 TechRepair Content. Tous droits réservés.</span>
+    <span>Fait avec ❤️ en France</span>
+  </div>
+</footer>
+
+<script>
+<script>
+const auditUrl = document.getElementById('auditUrl');
+const auditBtn = document.getElementById('auditBtn');
+const auditError = document.getElementById('auditError');
+const auditLoading = document.getElementById('auditLoading');
+const auditLoadingText = document.getElementById('auditLoadingText');
+const auditResults = document.getElementById('auditResults');
+const auditChecks = document.getElementById('auditChecks');
+const scoreNum = document.getElementById('scoreNum');
+const scoreLabel = document.getElementById('scoreLabel');
+const scoreSub = document.getElementById('scoreSub');
+
+const loadingSteps = [
+  '→ Récupération de la page…',
+  '→ Analyse des balises et métadonnées…',
+  '→ Recherche de données structurées (JSON-LD)…',
+  '→ Vérification robots.txt…'
+];
+
+async function runAudit() {
+  const url = auditUrl.value.trim();
+  if (!url) return;
+
+  auditError.style.display = 'none';
+  auditResults.style.display = 'none';
+  auditBtn.disabled = true;
+  auditLoading.style.display = 'block';
+
+  let stepIndex = 0;
+  auditLoadingText.textContent = loadingSteps[0];
+  const stepInterval = setInterval(() => {
+    stepIndex = Math.min(stepIndex + 1, loadingSteps.length - 1);
+    auditLoadingText.textContent = loadingSteps[stepIndex];
+  }, 700);
+
+  try {
+    const response = await fetch('/api/audit-ia', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ url })
+    });
+    const data = await response.json();
+
+    clearInterval(stepInterval);
+    auditLoading.style.display = 'none';
+    auditBtn.disabled = false;
+
+    if (!response.ok) {
+      auditError.textContent = data.error || "Une erreur est survenue. Réessayez.";
+      auditError.style.display = 'block';
+      return;
+    }
+
+    scoreNum.textContent = data.score + '%';
+    scoreNum.style.color = data.score >= 70 ? '#16A34A' : (data.score >= 40 ? '#D97706' : '#DC2626');
+    scoreSub.textContent = data.url;
+
+    if (data.score >= 70) scoreLabel.textContent = 'Bonne préparation IA';
+    else if (data.score >= 40) scoreLabel.textContent = 'Préparation IA partielle';
+    else scoreLabel.textContent = 'Préparation IA à renforcer';
+
+    auditChecks.innerHTML = '';
+    data.checks.forEach(check => {
+      const div = document.createElement('div');
+      div.className = 'audit-check ' + (check.passed ? 'pass' : 'fail');
+      div.innerHTML = '<div class="ic">' + (check.passed ? '✓' : '✕') + '</div>' +
+        '<div class="txt"><b>' + check.label + '</b><span>' + check.detail + '</span></div>';
+      auditChecks.appendChild(div);
+    });
+
+    auditResults.style.display = 'block';
+  } catch (err) {
+    clearInterval(stepInterval);
+    auditLoading.style.display = 'none';
+    auditBtn.disabled = false;
+    auditError.textContent = "Erreur réseau. Réessayez.";
+    auditError.style.display = 'block';
+    console.error(err);
+  }
+}
+
+auditBtn.addEventListener('click', runAudit);
+auditUrl.addEventListener('keydown', (e) => { if (e.key === 'Enter') runAudit(); });
+</script>
+
+</body>
+</html>
