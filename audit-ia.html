@@ -199,13 +199,13 @@ footer h4{font-size:10.5px;font-weight:700;color:#94a3b8;text-transform:uppercas
     <div class="logo-text"><span class="logo-main">TechRepair</span><span class="logo-sub">Content</span></div>
   </div>
   <div class="nav-links">
-    <a href="/">Accueil</a>
-    <a href="/services">Services</a>
-    <a href="/secteurs">Secteurs</a>
-    <a href="/apropos">À propos</a>
-    <a href="/blog">Blog</a>
+    <a href="https://www.techrepaircontent.com/">Accueil</a>
+    <a href="https://www.techrepaircontent.com/services">Services</a>
+    <a href="https://www.techrepaircontent.com/secteurs">Secteurs</a>
+    <a href="https://www.techrepaircontent.com/apropos">À propos</a>
+    <a href="https://www.techrepaircontent.com/blog">Blog</a>
     <a href="https://demo-agent-rh.vercel.app" class="btn-demo"><span class="star">★</span>Démo<span class="btn-demo-badge">Nouveau</span></a>
-    <button class="btn-nav" onclick="window.location='/devis'">Obtenir un devis</button>
+    <button class="btn-nav" onclick="window.location='https://www.techrepaircontent.com/devis'">Obtenir un devis</button>
   </div>
   <button class="hamburger" aria-label="Menu">☰</button>
 </nav>
@@ -240,7 +240,7 @@ footer h4{font-size:10.5px;font-weight:700;color:#94a3b8;text-transform:uppercas
       <div class="audit-checks" id="auditChecks"></div>
       <div class="audit-cta">
         <p>Ce diagnostic est indicatif et couvre les signaux techniques de base. Un audit complet va plus loin (contenu, stratégie de mots-clés, plan d'action priorisé).</p>
-        <a href="/devis">Demander un audit complet gratuit →</a>
+        <a href="https://www.techrepaircontent.com/devis">Demander un audit complet gratuit →</a>
       </div>
     </div>
   </div>
@@ -277,8 +277,8 @@ footer h4{font-size:10.5px;font-weight:700;color:#94a3b8;text-transform:uppercas
       <h2>Du contenu qui performe, pas qui remplit des pages</h2>
       <p style="color:rgba(255,255,255,.82)">Vous voulez une stratégie de contenu sur mesure pour votre secteur tech B2B ? Parlons-en.</p>
       <div class="cta-btns">
-        <button class="btn-white" onclick="window.location='/devis'">Obtenir un devis gratuit →</button>
-        <button class="btn-ghost-cta" onclick="window.location='/services'">Voir nos services →</button>
+        <button class="btn-white" onclick="window.location='https://www.techrepaircontent.com/devis'">Obtenir un devis gratuit →</button>
+        <button class="btn-ghost-cta" onclick="window.location='https://www.techrepaircontent.com/services'">Voir nos services →</button>
       </div>
     </div>
     <div class="cta-checks">
@@ -295,8 +295,8 @@ footer h4{font-size:10.5px;font-weight:700;color:#94a3b8;text-transform:uppercas
       <div class="logo"><div class="logo-box">TRD</div><div class="logo-text" style="color:#fff">TechRepair<span>Content</span></div></div>
       <p>Rédaction SEO & technique pour entreprises SaaS, Tech et E-commerce.</p>
     </div>
-    <div><h4>Navigation</h4><ul class="flinks"><li><a href="/">Accueil</a></li><li><a href="/apropos">À propos</a></li><li><a href="/services">Services</a></li><li><a href="/secteurs">Secteurs</a></li><li><a href="/blog">Blog</a></li></ul></div>
-    <div><h4>Ressources</h4><ul class="flinks"><li><a href="/faq">FAQ</a></li><li><a href="/confidentialite">Confidentialité</a></li><li><a href="/mentions-legales">Mentions légales</a></li></ul></div>
+    <div><h4>Navigation</h4><ul class="flinks"><li><a href="https://www.techrepaircontent.com/">Accueil</a></li><li><a href="https://www.techrepaircontent.com/apropos">À propos</a></li><li><a href="https://www.techrepaircontent.com/services">Services</a></li><li><a href="https://www.techrepaircontent.com/secteurs">Secteurs</a></li><li><a href="https://www.techrepaircontent.com/blog">Blog</a></li></ul></div>
+    <div><h4>Ressources</h4><ul class="flinks"><li><a href="https://www.techrepaircontent.com/faq">FAQ</a></li><li><a href="https://www.techrepaircontent.com/confidentialite">Confidentialité</a></li><li><a href="https://www.techrepaircontent.com/mentions-legales">Mentions légales</a></li></ul></div>
     <div>
       <h4>Contact</h4>
       <ul class="flinks"><li><a href="mailto:contact@techrepaircontent.com">contact@techrepaircontent.com</a></li><li><a href="#">Réponse sous 24h</a></li></ul>
@@ -376,24 +376,4 @@ async function runAudit() {
       const div = document.createElement('div');
       div.className = 'audit-check ' + (check.passed ? 'pass' : 'fail');
       div.innerHTML = '<div class="ic">' + (check.passed ? '✓' : '✕') + '</div>' +
-        '<div class="txt"><b>' + check.label + '</b><span>' + check.detail + '</span></div>';
-      auditChecks.appendChild(div);
-    });
-
-    auditResults.style.display = 'block';
-  } catch (err) {
-    clearInterval(stepInterval);
-    auditLoading.style.display = 'none';
-    auditBtn.disabled = false;
-    auditError.textContent = "Erreur réseau. Réessayez.";
-    auditError.style.display = 'block';
-    console.error(err);
-  }
-}
-
-auditBtn.addEventListener('click', runAudit);
-auditUrl.addEventListener('keydown', (e) => { if (e.key === 'Enter') runAudit(); });
-</script>
-
-</body>
-</html>
+        '<div class="txt"><b>'
