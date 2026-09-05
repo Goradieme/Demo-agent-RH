@@ -126,6 +126,39 @@ footer{margin-top:64px;background:var(--navy);color:var(--muted-2);padding:44px 
 .footer-col a{display:block;font-size:13px;margin-bottom:9px;color:var(--muted-2)}
 .footer-col a:hover{color:#fff}
 .footer-bottom{max-width:1100px;margin:34px auto 0;padding-top:20px;border-top:1px solid rgba(255,255,255,.1);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:12px;color:var(--muted-2)}
+
+/* ══ NAV OUTILS IA (identique au site principal) ══ */
+.btn-demo{position:relative;background:var(--blue);color:#fff;border:none;border-radius:8px;padding:9px 16px;font-weight:800;font-size:13.5px;white-space:nowrap;font-family:inherit;display:inline-flex;align-items:center;gap:6px;text-decoration:none;cursor:pointer;transition:background .2s,transform .2s}
+.btn-demo:hover{background:var(--blue-dark);transform:translateY(-1px)}
+.btn-demo .star{color:#fff;font-size:14px;line-height:1;font-weight:800}
+.btn-demo-badge{position:absolute;top:-9px;right:-8px;background:#F59E0B;color:#fff;font-size:8.5px;font-weight:800;padding:2px 6px;border-radius:999px;letter-spacing:.3px;box-shadow:0 2px 6px rgba(245,158,11,.45);animation:demoPulse 2.2s ease-in-out infinite}
+@keyframes demoPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
+.nav-links a.btn-demo{color:#fff}
+.nav-tools{position:relative;display:inline-block}
+.nav-tools .chevron{font-size:10px;margin-left:2px;transition:transform .15s}
+.nav-tools:hover .chevron{transform:rotate(180deg)}
+.nav-tools-menu{display:none;position:absolute;top:calc(100% + 8px);left:0;background:#fff;border:1px solid var(--border);border-radius:12px;box-shadow:0 12px 32px rgba(15,27,61,.15);min-width:220px;padding:6px;z-index:60}
+.nav-tools:hover .nav-tools-menu,.nav-tools:focus-within .nav-tools-menu{display:block}
+.nav-tools-menu a{display:flex;align-items:center;gap:9px;padding:10px 12px;border-radius:8px;font-size:13.5px;font-weight:600;color:var(--navy);text-decoration:none;white-space:nowrap}
+.nav-tools-menu a:hover,.nav-tools-menu a.active{background:var(--blue-light);color:var(--blue)}
+.nav-tools-menu a .ico{font-size:15px}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+.hamburger span{display:block;width:24px;height:2px;background:var(--navy);border-radius:2px;transition:all .3s}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mobile-menu{display:none;position:fixed;top:62px;left:0;right:0;background:#fff;border-bottom:1px solid var(--border);padding:16px 24px;flex-direction:column;gap:4px;z-index:199;box-shadow:0 8px 24px rgba(0,0,0,.08)}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-size:15px;font-weight:600;color:var(--muted);padding:10px 0;border-bottom:1px solid var(--border);transition:color .2s;text-decoration:none}
+.mobile-menu a:last-of-type{border-bottom:none}
+.mobile-menu a:hover,.mobile-menu a.active{color:var(--blue)}
+.mobile-menu .btn-nav-mobile{margin-top:10px;background:var(--blue);color:#fff;border:none;border-radius:8px;padding:12px;font-weight:700;font-size:14px;cursor:pointer;font-family:inherit;width:100%}
+.btn-demo-mobile{position:relative;margin-top:10px;background:var(--blue);color:#fff;border-radius:8px;padding:12px;font-weight:800;font-size:14px;font-family:inherit;width:100%;display:flex;align-items:center;justify-content:center;gap:7px;text-decoration:none;border-bottom:none!important}
+.btn-demo-mobile .star{color:#fff;font-size:15px;font-weight:800}
+.mobile-menu a.btn-demo-mobile{color:#fff}
+.btn-demo-mobile .btn-demo-badge{top:-9px;right:14px;animation:none}
+.mobile-menu a.btn-demo-mobile.active{background:var(--blue-dark)}
+@media(max-width:900px){.nav-links{display:none}.hamburger{display:flex}}
 </style>
 </head>
 <body>
@@ -141,10 +174,31 @@ footer{margin-top:64px;background:var(--navy);color:var(--muted-2);padding:44px 
     <a href="https://www.techrepaircontent.com/secteurs">Secteurs</a>
     <a href="https://www.techrepaircontent.com/apropos">À propos</a>
     <a href="https://www.techrepaircontent.com/blog">Blog</a>
+    <div class="nav-tools">
+      <button class="btn-demo" type="button"><span class="star">★</span>Outils IA<span class="btn-demo-badge">Nouveau</span><span class="chevron">▾</span></button>
+      <div class="nav-tools-menu">
+        <a href="https://demo.techrepaircontent.com" class="active"><span class="ico">🤖</span> Démo avec Ted</a>
+        <a href="https://audit.techrepaircontent.com"><span class="ico">🔍</span> Audit IA gratuit</a>
+      </div>
+    </div>
     <button class="btn-nav" onclick="window.location='https://www.techrepaircontent.com/devis'">Obtenir un devis</button>
   </div>
-  <button class="hamburger" aria-label="Menu">☰</button>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<!-- ══ MOBILE MENU ══ -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="https://www.techrepaircontent.com/">Accueil</a>
+  <a href="https://www.techrepaircontent.com/services">Services</a>
+  <a href="https://www.techrepaircontent.com/secteurs">Secteurs</a>
+  <a href="https://www.techrepaircontent.com/apropos">À propos</a>
+  <a href="https://www.techrepaircontent.com/blog">Blog</a>
+  <a href="https://demo.techrepaircontent.com" class="btn-demo-mobile active"><span class="star">★</span>Démo avec Ted<span class="btn-demo-badge">Nouveau</span></a>
+  <a href="https://audit.techrepaircontent.com" class="btn-demo-mobile"><span class="star">★</span>Audit IA gratuit</a>
+  <button class="btn-nav-mobile" onclick="window.location='https://www.techrepaircontent.com/devis'">Obtenir un devis</button>
+</div>
 
 <section class="demo-hero">
   <div class="demo-hero-inner">
@@ -257,129 +311,4 @@ const chatSend = document.getElementById('chatSend');
 const consoleEl = document.getElementById('console');
 const consoleLog = document.getElementById('consoleLog');
 const sectorIco = document.getElementById('sectorIco');
-const sectorLabel = document.getElementById('sectorLabel');
-const sectorKb = document.getElementById('sectorKb');
-const headDot = document.getElementById('headDot');
-const headSub = document.getElementById('headSub');
-
-// Le prompt système est désormais géré côté backend (/api/chat.js), pas ici,
-// pour ne jamais exposer la logique métier ni la clé API dans le navigateur.
-
-const SECTORS = {
-  rh:        { label:'Ressources Humaines', short:'RH', color:'#EC4899', icon:'👥', kb:'Base CV & fiches de poste', keywords:['cv','recrut','candidat','poste','rh'] },
-  saas:      { label:'SaaS', short:'SaaS', color:'#1A56DB', icon:'🧑\u200d💻', kb:'Tickets support & doc produit', keywords:['saas','bug','ticket','facturation','client','support'] },
-  ecommerce: { label:'E-commerce', short:'E-commerce', color:'#F97316', icon:'🛒', kb:'Avis clients & fiches produits', keywords:['avis','livraison','commande','produit','e-commerce','ecommerce'] },
-  cyber:     { label:'Cybersécurité', short:'Cyber', color:'#8B5CF6', icon:'🔒', kb:'Référentiels NIS2 / ISO 27001', keywords:['nis2','rssi','cyber','sécurité','conformité'] },
-  fintech:   { label:'Fintech', short:'Fintech', color:'#10B981', icon:'💳', kb:'Réglementation DORA / DSP2', keywords:['dora','daf','fintech','financ','banque','réglement'] },
-  general:   { label:'Général', short:'Général', color:'#64748B', icon:'🤖', kb:'Base de connaissances générale', keywords:[] }
-};
-
-// Colorer les puces secteur avec leur teinte
-document.querySelectorAll('.uc-chip').forEach(btn => {
-  const s = SECTORS[btn.dataset.sector];
-  if (s) {
-    btn.style.setProperty('--chip-color', s.color);
-    btn.querySelector('.sw').style.background = s.color;
-  }
-});
-
-function detectSector(text) {
-  const lower = text.toLowerCase();
-  for (const key in SECTORS) {
-    if (SECTORS[key].keywords.some(k => lower.includes(k))) return key;
-  }
-  return 'general';
-}
-
-function setSector(key) {
-  const s = SECTORS[key] || SECTORS.general;
-  consoleEl.style.setProperty('--sector', s.color);
-  sectorIco.textContent = s.icon;
-  sectorLabel.textContent = s.label;
-  sectorKb.textContent = s.kb;
-}
-
-let history = [];
-let logCounter = 0;
-
-function addMessage(text, sender) {
-  const div = document.createElement('div');
-  div.className = 'msg ' + (sender === 'user' ? 'msg-user' : 'msg-bot');
-  div.textContent = text;
-  chatBody.appendChild(div);
-  chatBody.scrollTop = chatBody.scrollHeight;
-  return div;
-}
-
-function resetLog() {
-  consoleLog.innerHTML = '';
-  logCounter = 0;
-}
-
-function logLine(text, opts = {}) {
-  logCounter += 1;
-  const div = document.createElement('div');
-  div.className = 'line' + (opts.ok ? ' ok' : '');
-  div.style.animationDelay = (opts.delay || 0) + 'ms';
-  const tPrefix = opts.ok ? '✓' : '→';
-  div.innerHTML = '<span class="t">T+' + (logCounter * 0.3).toFixed(1) + 's</span><span>' + tPrefix + ' ' + text + '</span>';
-  consoleLog.appendChild(div);
-  consoleLog.scrollTop = consoleLog.scrollHeight;
-}
-
-function setBusy(isBusy) {
-  headDot.classList.toggle('busy', isBusy);
-  headSub.textContent = isBusy ? 'status: processing' : 'status: idle';
-  chatInput.disabled = isBusy;
-  chatSend.disabled = isBusy;
-}
-
-async function sendMessage(text, sectorHint) {
-  if (!text.trim()) return;
-  const sectorKey = sectorHint || detectSector(text);
-  setSector(sectorKey);
-  const kb = SECTORS[sectorKey].kb;
-
-  addMessage(text, 'user');
-  history.push({ role: 'user', content: text });
-  chatInput.value = '';
-  setBusy(true);
-  resetLog();
-  logLine('Requête reçue');
-  logLine('Analyse de l\'intention…', { delay: 260 });
-  logLine('Consultation : ' + kb, { delay: 620 });
-  logLine('Rédaction de la réponse…', { delay: 980 });
-
-  try {
-    const response = await fetch('/api/chat', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ messages: history })
-    });
-    const data = await response.json();
-
-    const reply = data.reply || "Désolé, une erreur est survenue. Réessayez avec une autre question.";
-    setTimeout(() => {
-      logLine('Réponse générée', { ok: true, delay: 0 });
-      addMessage(reply, 'bot');
-      history.push({ role: 'assistant', content: reply });
-      setBusy(false);
-    }, 1150);
-  } catch (err) {
-    logLine('Erreur pendant la génération', { delay: 0 });
-    addMessage("Désolé, une erreur est survenue pendant la génération de la réponse. Réessayez.", 'bot');
-    console.error(err);
-    setBusy(false);
-  }
-}
-
-chatSend.addEventListener('click', () => sendMessage(chatInput.value));
-chatInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') sendMessage(chatInput.value); });
-
-document.querySelectorAll('.uc-chip').forEach(btn => {
-  btn.addEventListener('click', () => sendMessage(btn.dataset.msg, btn.dataset.sector));
-});
-</script>
-
-</body>
-</html>
+const sectorLabel = doc
