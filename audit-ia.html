@@ -189,7 +189,40 @@ footer h4{font-size:10.5px;font-weight:700;color:#94a3b8;text-transform:uppercas
 .audit-explain-item b{display:block;font-size:13.5px;color:var(--navy);margin-bottom:5px}
 .audit-explain-item span{font-size:12.5px;color:var(--muted);line-height:1.5}
 @media(max-width:600px){.audit-explain-grid{grid-template-columns:1fr}.audit-input-row{flex-direction:column}}
+
+/* ══ NAV OUTILS IA (identique au site principal) ══ */
+.btn-demo{position:relative;background:var(--blue);color:#fff;border:none;border-radius:8px;padding:9px 16px;font-weight:800;font-size:13.5px;white-space:nowrap;font-family:inherit;display:inline-flex;align-items:center;gap:6px;text-decoration:none;cursor:pointer;transition:background .2s,transform .2s}
+.btn-demo:hover{background:var(--blue-dark);transform:translateY(-1px)}
+.btn-demo .star{color:#fff;font-size:14px;line-height:1;font-weight:800}
+.btn-demo-badge{position:absolute;top:-9px;right:-8px;background:#F59E0B;color:#fff;font-size:8.5px;font-weight:800;padding:2px 6px;border-radius:999px;letter-spacing:.3px;box-shadow:0 2px 6px rgba(245,158,11,.45);animation:demoPulse 2.2s ease-in-out infinite}
+@keyframes demoPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
+.nav-links a.btn-demo{color:#fff}
+.nav-tools{position:relative;display:inline-block}
+.nav-tools .chevron{font-size:10px;margin-left:2px;transition:transform .15s}
+.nav-tools:hover .chevron{transform:rotate(180deg)}
+.nav-tools-menu{display:none;position:absolute;top:calc(100% + 8px);right:0;background:#fff;border:1px solid var(--border);border-radius:12px;box-shadow:0 12px 32px rgba(15,27,61,.15);min-width:220px;padding:6px;z-index:260}
+.nav-tools:hover .nav-tools-menu,.nav-tools:focus-within .nav-tools-menu{display:block}
+.nav-tools-menu a{display:flex;align-items:center;gap:9px;padding:10px 12px;border-radius:8px;font-size:13.5px;font-weight:600;color:var(--navy);text-decoration:none;white-space:nowrap}
+.nav-tools-menu a:hover,.nav-tools-menu a.active{background:var(--blue-light);color:var(--blue)}
+.nav-tools-menu a .ico{font-size:15px}
+.hamburger span{display:block;width:24px;height:2px;background:var(--navy);border-radius:2px;transition:all .3s}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mobile-menu{display:none;position:fixed;top:62px;left:0;right:0;background:#fff;border-bottom:1px solid var(--border);padding:16px 24px;flex-direction:column;gap:4px;z-index:199;box-shadow:0 8px 24px rgba(0,0,0,.08)}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-size:15px;font-weight:600;color:var(--muted);padding:10px 0;border-bottom:1px solid var(--border);transition:color .2s;text-decoration:none}
+.mobile-menu a:last-of-type{border-bottom:none}
+.mobile-menu a:hover,.mobile-menu a.active{color:var(--blue)}
+.mobile-menu .btn-nav-mobile{margin-top:10px;background:var(--blue);color:#fff;border:none;border-radius:8px;padding:12px;font-weight:700;font-size:14px;cursor:pointer;font-family:inherit;width:100%}
+.btn-demo-mobile{position:relative;margin-top:10px;background:var(--blue);color:#fff;border-radius:8px;padding:12px;font-weight:800;font-size:14px;font-family:inherit;width:100%;display:flex;align-items:center;justify-content:center;gap:7px;text-decoration:none;border-bottom:none!important}
+.btn-demo-mobile .star{color:#fff;font-size:15px;font-weight:800}
+.mobile-menu a.btn-demo-mobile{color:#fff}
+.btn-demo-mobile .btn-demo-badge{top:-9px;right:14px;animation:none}
+.mobile-menu a.btn-demo-mobile.active{background:var(--blue-dark)}
+@media(max-width:900px){.nav-links{display:none}.hamburger{display:flex}}
 </style>
+<link rel="canonical" href="https://audit.techrepaircontent.com/"/>
 </head>
 <body>
 
@@ -204,11 +237,31 @@ footer h4{font-size:10.5px;font-weight:700;color:#94a3b8;text-transform:uppercas
     <a href="https://www.techrepaircontent.com/secteurs">Secteurs</a>
     <a href="https://www.techrepaircontent.com/apropos">À propos</a>
     <a href="https://www.techrepaircontent.com/blog">Blog</a>
-    <a href="https://demo-agent-rh.vercel.app" class="btn-demo"><span class="star">★</span>Démo<span class="btn-demo-badge">Nouveau</span></a>
+    <div class="nav-tools">
+      <button class="btn-demo" type="button"><span class="star">★</span>Outils IA<span class="btn-demo-badge">Nouveau</span><span class="chevron">▾</span></button>
+      <div class="nav-tools-menu">
+        <a href="https://demo.techrepaircontent.com"><span class="ico">🤖</span> Démo avec Ted</a>
+        <a href="https://audit.techrepaircontent.com" class="active"><span class="ico">🔍</span> Audit IA gratuit</a>
+      </div>
+    </div>
     <button class="btn-nav" onclick="window.location='https://www.techrepaircontent.com/devis'">Obtenir un devis</button>
   </div>
-  <button class="hamburger" aria-label="Menu">☰</button>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<!-- ══ MENU MOBILE ══ -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="https://www.techrepaircontent.com/">Accueil</a>
+  <a href="https://www.techrepaircontent.com/services">Services</a>
+  <a href="https://www.techrepaircontent.com/secteurs">Secteurs</a>
+  <a href="https://www.techrepaircontent.com/apropos">À propos</a>
+  <a href="https://www.techrepaircontent.com/blog">Blog</a>
+  <a href="https://demo.techrepaircontent.com" class="btn-demo-mobile"><span class="star">★</span>Démo avec Ted<span class="btn-demo-badge">Nouveau</span></a>
+  <a href="https://audit.techrepaircontent.com" class="btn-demo-mobile active"><span class="star">★</span>Audit IA gratuit</a>
+  <button class="btn-nav-mobile" onclick="window.location='https://www.techrepaircontent.com/devis'">Obtenir un devis</button>
+</div>
 
 <section class="audit-hero">
   <div class="audit-hero-inner">
@@ -278,102 +331,4 @@ footer h4{font-size:10.5px;font-weight:700;color:#94a3b8;text-transform:uppercas
       <p style="color:rgba(255,255,255,.82)">Vous voulez une stratégie de contenu sur mesure pour votre secteur tech B2B ? Parlons-en.</p>
       <div class="cta-btns">
         <button class="btn-white" onclick="window.location='https://www.techrepaircontent.com/devis'">Obtenir un devis gratuit →</button>
-        <button class="btn-ghost-cta" onclick="window.location='https://www.techrepaircontent.com/services'">Voir nos services →</button>
-      </div>
-    </div>
-    <div class="cta-checks">
-      <div class="cta-check"><span class="cta-ci">✓</span> Réponse sous 24h</div>
-      <div class="cta-check"><span class="cta-ci">✓</span> Audit SEO gratuit</div>
-      <div class="cta-check"><span class="cta-ci">✓</span> Sans engagement</div>
-    </div>
-  </div>
-</div>
-
-<footer>
-  <div class="footer-inner">
-    <div class="footer-brand">
-      <div class="logo"><div class="logo-box">TRD</div><div class="logo-text" style="color:#fff">TechRepair<span>Content</span></div></div>
-      <p>Rédaction SEO & technique pour entreprises SaaS, Tech et E-commerce.</p>
-    </div>
-    <div><h4>Navigation</h4><ul class="flinks"><li><a href="https://www.techrepaircontent.com/">Accueil</a></li><li><a href="https://www.techrepaircontent.com/apropos">À propos</a></li><li><a href="https://www.techrepaircontent.com/services">Services</a></li><li><a href="https://www.techrepaircontent.com/secteurs">Secteurs</a></li><li><a href="https://www.techrepaircontent.com/blog">Blog</a></li></ul></div>
-    <div><h4>Ressources</h4><ul class="flinks"><li><a href="https://www.techrepaircontent.com/faq">FAQ</a></li><li><a href="https://www.techrepaircontent.com/confidentialite">Confidentialité</a></li><li><a href="https://www.techrepaircontent.com/mentions-legales">Mentions légales</a></li></ul></div>
-    <div>
-      <h4>Contact</h4>
-      <ul class="flinks"><li><a href="mailto:contact@techrepaircontent.com">contact@techrepaircontent.com</a></li><li><a href="#">Réponse sous 24h</a></li></ul>
-      <div class="fsocial"><a class="fsoc" href="https://www.linkedin.com/in/techrepair-content" target="_blank" rel="noopener">in</a><a class="fsoc" href="mailto:contact@techrepaircontent.com">✉</a></div>
-    </div>
-    <div><h4>Basé en France</h4><div style="font-size:22px">🇫🇷</div></div>
-  </div>
-  <div class="footer-bottom">
-    <span>© 2026 TechRepair Content. Tous droits réservés.</span>
-    <span>Fait avec ❤️ en France</span>
-  </div>
-</footer>
-
-<script>
-const auditUrl = document.getElementById('auditUrl');
-const auditBtn = document.getElementById('auditBtn');
-const auditError = document.getElementById('auditError');
-const auditLoading = document.getElementById('auditLoading');
-const auditLoadingText = document.getElementById('auditLoadingText');
-const auditResults = document.getElementById('auditResults');
-const auditChecks = document.getElementById('auditChecks');
-const scoreNum = document.getElementById('scoreNum');
-const scoreLabel = document.getElementById('scoreLabel');
-const scoreSub = document.getElementById('scoreSub');
-
-const loadingSteps = [
-  '→ Récupération de la page…',
-  '→ Analyse des balises et métadonnées…',
-  '→ Recherche de données structurées (JSON-LD)…',
-  '→ Vérification robots.txt…'
-];
-
-async function runAudit() {
-  const url = auditUrl.value.trim();
-  if (!url) return;
-
-  auditError.style.display = 'none';
-  auditResults.style.display = 'none';
-  auditBtn.disabled = true;
-  auditLoading.style.display = 'block';
-
-  let stepIndex = 0;
-  auditLoadingText.textContent = loadingSteps[0];
-  const stepInterval = setInterval(() => {
-    stepIndex = Math.min(stepIndex + 1, loadingSteps.length - 1);
-    auditLoadingText.textContent = loadingSteps[stepIndex];
-  }, 700);
-
-  try {
-    const response = await fetch('/api/audit-ia', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ url })
-    });
-    const data = await response.json();
-
-    clearInterval(stepInterval);
-    auditLoading.style.display = 'none';
-    auditBtn.disabled = false;
-
-    if (!response.ok) {
-      auditError.textContent = data.error || "Une erreur est survenue. Réessayez.";
-      auditError.style.display = 'block';
-      return;
-    }
-
-    scoreNum.textContent = data.score + '%';
-    scoreNum.style.color = data.score >= 70 ? '#16A34A' : (data.score >= 40 ? '#D97706' : '#DC2626');
-    scoreSub.textContent = data.url;
-
-    if (data.score >= 70) scoreLabel.textContent = 'Bonne préparation IA';
-    else if (data.score >= 40) scoreLabel.textContent = 'Préparation IA partielle';
-    else scoreLabel.textContent = 'Préparation IA à renforcer';
-
-    auditChecks.innerHTML = '';
-    data.checks.forEach(check => {
-      const div = document.createElement('div');
-      div.className = 'audit-check ' + (check.passed ? 'pass' : 'fail');
-      div.innerHTML = '<div class="ic">' + (check.passed ? '✓' : '✕') + '</div>' +
-        '<div class="txt"><b>'
+    
