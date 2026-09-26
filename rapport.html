@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="robots" content="noindex, nofollow"/>
+<title>Rapport de visibilité IA | TechRepair Content</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --blue:#1A56DB;--blue-dark:#1342b0;--blue-light:#EFF6FF;
+  --navy:#0F1B3D;--text:#1e293b;--muted:#475569;--border:#e2e8f0;
+  --red:#DC2626;--red-bg:#FEF2F2;--orange:#D97706;--orange-bg:#FFFBEB;
+  --green:#16A34A;--green-bg:#F0FDF4;--grey:#64748B;--grey-bg:#F8FAFC;
+}
+body{font-family:'Manrope',sans-serif;background:#f1f5f9;color:var(--text);font-size:15px;line-height:1.7;padding:28px 18px}
+.sheet{max-width:840px;margin:0 auto;background:#fff;border-radius:16px;box-shadow:0 4px 30px rgba(15,27,61,.09);overflow:hidden}
+
+/* ── En-tête ── */
+.rh{background:linear-gradient(135deg,var(--navy) 0%,var(--blue) 100%);color:#fff;padding:38px 42px}
+.rh-brand{display:flex;align-items:center;gap:10px;margin-bottom:24px}
+.rh-box{width:34px;height:34px;background:rgba(255,255,255,.18);border-radius:8px;display:grid;place-items:center;font-size:12px;font-weight:800}
+.rh-brand b{font-size:15px;font-weight:800}
+.rh-brand span{font-size:12px;opacity:.7;display:block;font-weight:600}
+.rh h1{font-size:27px;font-weight:800;line-height:1.3;margin-bottom:8px}
+.rh-url{font-size:14px;opacity:.82;word-break:break-all;font-family:ui-monospace,monospace}
+.rh-date{font-size:12.5px;opacity:.62;margin-top:14px}
+
+/* ── Synthèse ── */
+.synth{display:grid;grid-template-columns:auto 1fr;gap:30px;align-items:center;padding:32px 42px;border-bottom:1px solid var(--border)}
+.ring{width:112px;height:112px;border-radius:50%;display:grid;place-items:center;flex-shrink:0;position:relative}
+.ring b{font-size:32px;font-weight:800;line-height:1}
+.ring span{font-size:10.5px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;opacity:.8}
+.synth-txt h2{font-size:20px;font-weight:800;color:var(--navy);margin-bottom:7px;line-height:1.35}
+.synth-txt p{font-size:14.5px;color:var(--muted);line-height:1.7}
+
+/* ── Sections ── */
+.sec{padding:32px 42px;border-bottom:1px solid var(--border)}
+.sec:last-of-type{border-bottom:none}
+.sec-lab{font-size:11px;font-weight:800;letter-spacing:.7px;text-transform:uppercase;color:var(--blue);margin-bottom:6px}
+.sec h2{font-size:21px;font-weight:800;color:var(--navy);margin-bottom:8px;line-height:1.35}
+.sec .intro{font-size:14.5px;color:var(--muted);margin-bottom:22px;line-height:1.7}
+
+/* ── Correctifs ── */
+.fix{border:1px solid var(--border);border-radius:13px;margin-bottom:16px;overflow:hidden;page-break-inside:avoid}
+.fix-head{display:flex;align-items:flex-start;gap:14px;padding:18px 20px}
+.fix-rank{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;font-size:14px;font-weight:800;flex-shrink:0;color:#fff}
+.fix-title{flex:1}
+.fix-title b{display:block;font-size:16px;font-weight:800;color:var(--navy);line-height:1.4;margin-bottom:5px}
+.fix-tags{display:flex;gap:7px;flex-wrap:wrap}
+.tag{font-size:10.5px;font-weight:800;padding:3px 9px;border-radius:20px;letter-spacing:.2px}
+.t1{background:var(--red-bg);color:var(--red)}
+.t2{background:var(--orange-bg);color:var(--orange)}
+.t3{background:var(--grey-bg);color:var(--grey);border:1px solid var(--border)}
+.t-eff{background:var(--blue-light);color:var(--blue-dark)}
+.fix-body{padding:0 20px 20px 64px}
+.fix-body .constat{font-size:14px;color:var(--muted);background:var(--grey-bg);border-radius:9px;padding:12px 14px;margin-bottom:14px;line-height:1.65}
+.fix-body h4{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--navy);margin-bottom:6px}
+.fix-body p{font-size:14.5px;color:var(--muted);line-height:1.75;margin-bottom:14px}
+.code{background:var(--navy);color:#e2e8f0;border-radius:9px;padding:14px 16px;font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:12.5px;line-height:1.7;overflow-x:auto;white-space:pre}
+.code-lab{font-size:11px;font-weight:700;color:var(--grey);margin-bottom:6px;text-transform:uppercase;letter-spacing:.4px}
+
+/* ── Points conformes ── */
+.ok-list{display:grid;gap:9px}
+.ok-row{display:flex;gap:11px;align-items:flex-start;font-size:14px;padding:10px 14px;background:var(--green-bg);border-radius:9px}
+.ok-row .ic{color:var(--green);font-weight:800;flex-shrink:0}
+.ok-row b{color:var(--navy);font-weight:700}
+.ok-row span{color:var(--muted);display:block;font-size:13px;margin-top:2px}
+.na-row{background:var(--grey-bg);}
+.na-row .ic{color:var(--grey)}
+
+/* ── Plan ── */
+.plan{counter-reset:etape}
+.plan-item{display:flex;gap:14px;padding:13px 0;border-bottom:1px solid var(--border)}
+.plan-item:last-child{border-bottom:none}
+.plan-num{width:26px;height:26px;border-radius:50%;background:var(--blue-light);color:var(--blue-dark);display:grid;place-items:center;font-size:12.5px;font-weight:800;flex-shrink:0}
+.plan-txt b{display:block;font-size:14.5px;color:var(--navy);font-weight:700;margin-bottom:2px}
+.plan-txt span{font-size:13.5px;color:var(--muted)}
+
+/* ── Clôture ── */
+.outro{background:var(--navy);color:#fff;padding:34px 42px}
+.outro h2{font-size:20px;font-weight:800;color:#fff;margin-bottom:9px}
+.outro p{font-size:14.5px;color:rgba(255,255,255,.85);line-height:1.75;margin-bottom:18px}
+.outro a.btn{display:inline-block;background:#fff;color:var(--blue-dark);border-radius:9px;padding:13px 24px;font-weight:800;font-size:14.5px;text-decoration:none}
+.outro .sig{font-size:13px;color:rgba(255,255,255,.6);margin-top:20px;line-height:1.7}
+.note{font-size:12.5px;color:var(--grey);padding:20px 42px;background:var(--grey-bg);line-height:1.7}
+
+/* ── Barre d'outils (masquée à l'impression) ── */
+.bar{max-width:840px;margin:0 auto 16px;display:flex;gap:9px;flex-wrap:wrap;align-items:center}
+.bar input{flex:1;min-width:220px;border:1px solid var(--border);border-radius:9px;padding:11px 14px;font-size:14px;font-family:inherit}
+.bar button{background:var(--blue);color:#fff;border:none;border-radius:9px;padding:11px 18px;font-weight:700;font-size:14px;cursor:pointer;font-family:inherit}
+.bar button:disabled{opacity:.55;cursor:not-allowed}
+.bar .sec-btn{background:#fff;color:var(--navy);border:1px solid var(--border)}
+.msg{max-width:840px;margin:0 auto 16px;padding:12px 16px;border-radius:9px;font-size:13.5px;display:none}
+.msg.show{display:block}
+.msg.err{background:var(--red-bg);color:#991b1b;border:1px solid #fecaca}
+.msg.info{background:var(--blue-light);color:var(--blue-dark)}
+
+
+.horizons{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:22px}
+.hz{border:1px solid var(--border);border-radius:13px;overflow:hidden;page-break-inside:avoid}
+.hz-top{padding:14px 18px;color:#fff}
+.hz-top b{display:block;font-size:15.5px;font-weight:800;line-height:1.3}
+.hz-top span{font-size:12px;opacity:.85}
+.hz-body{padding:16px 18px}
+.hz-body ul{list-style:none;display:grid;gap:11px}
+.hz-body li{font-size:14px;line-height:1.6;color:var(--muted);display:flex;gap:9px;align-items:flex-start}
+.hz-body li::before{content:'•';color:var(--blue);font-weight:800;flex-shrink:0}
+.hz-body li b{color:var(--navy);font-weight:700}
+.hz-foot{padding:12px 18px;background:var(--grey-bg);font-size:12.5px;color:var(--grey);line-height:1.6;border-top:1px solid var(--border)}
+.autonomie{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:24px}
+.aut{border-radius:12px;padding:18px 20px;page-break-inside:avoid}
+.aut.seul{background:var(--green-bg);border:1px solid #bbf7d0}
+.aut.aide{background:var(--blue-light);border:1px solid #bfdbfe}
+.aut h4{font-size:13.5px;font-weight:800;margin-bottom:9px}
+.aut.seul h4{color:var(--green)}
+.aut.aide h4{color:var(--blue-dark)}
+.aut ul{list-style:none;display:grid;gap:7px}
+.aut li{font-size:13.5px;line-height:1.6;color:var(--muted)}
+.mail-box{max-width:840px;margin:16px auto 0;background:#fff;border:1px solid var(--border);border-radius:13px;padding:20px;display:none}
+.mail-box h3{font-size:15px;font-weight:800;color:var(--navy);margin-bottom:4px}
+.mail-box .h{font-size:12.5px;color:var(--grey);margin-bottom:12px;line-height:1.6}
+.mail-box textarea{width:100%;min-height:340px;border:1px solid var(--border);border-radius:9px;padding:14px;font-family:ui-monospace,monospace;font-size:12.5px;line-height:1.7;resize:vertical}
+.mail-box .acts{display:flex;gap:9px;margin-top:11px;flex-wrap:wrap}
+@media print{.mail-box{display:none!important}}
+@media(max-width:700px){.horizons,.autonomie{grid-template-columns:1fr}}
+@media print{
+  body{background:#fff;padding:0}
+  .bar,.msg{display:none!important}
+  .sheet{box-shadow:none;border-radius:0;max-width:none}
+  .fix,.ok-row,.plan-item{page-break-inside:avoid}
+  .sec{padding:26px 0}
+  .rh,.outro,.note{padding-left:0;padding-right:0}
+}
+@media(max-width:700px){
+  body{padding:14px 10px}
+  .rh,.sec,.outro,.note,.synth{padding-left:22px;padding-right:22px}
+  .synth{grid-template-columns:1fr;text-align:center;justify-items:center}
+  .fix-body{padding-left:20px}
+}
+</style>
+</head>
+<body>
+
+<div class="bar" id="bar">
+  <input type="url" id="urlInput" placeholder="https://site-du-prospect.com/page-a-analyser"/>
+  <button id="goBtn">Générer le rapport</button>
+  <input type="text" id="prenomInput" placeholder="Prénom du prospect" style="max-width:190px;min-width:150px"/>
+  <button class="sec-btn" id="printBtn">Imprimer / PDF</button>
+  <button class="sec-btn" id="mailBtn">Rédiger l'email</button>
+</div>
+<div class="msg" id="msg"></div>
+
+
+<div class="mail-box" id="mailBox">
+  <h3>Email à envoyer au prospect</h3>
+  <p class="h">Rédigé à partir du diagnostic. Relisez-le, ajustez la dernière phrase selon ce que vous savez de la personne, puis copiez-le dans votre messagerie. Joignez le PDF du rapport.</p>
+  <textarea id="mailTxt"></textarea>
+  <div class="acts">
+    <button id="copyBtn">Copier le message</button>
+    <button class="sec-btn" id="closeMail">Fermer</button>
+  </div>
+</div>
+
+<div class="sheet" id="sheet" style="display:none">
+
+  <div class="rh">
+    <div class="rh-brand">
+      <div class="rh-box">TRD</div>
+      <div><b>TechRepair Content</b><span>Rédaction SEO &amp; visibilité IA</span></div>
+    </div>
+    <h1>Rapport de visibilité<br/>dans les moteurs de réponse</h1>
+    <div class="rh-url" id="rUrl"></div>
+    <div class="rh-date" id="rDate"></div>
+  </div>
+
+  <div class="synth">
+    <div class="ring" id="ring"><div><b id="rScore">0%</b><br/><span>préparation</span></div></div>
+    <div class="synth-txt">
+      <h2 id="rVerdict"></h2>
+      <p id="rResume"></p>
+    </div>
+  </div>
+
+  <div class="sec" id="secFix">
+    <div class="sec-lab">Ce qui ne va pas</div>
+    <h2>Les corrections à apporter</h2>
+    <p class="intro">Classées de la plus urgente à la moins urgente. Pour chacune : ce que le défaut coûte concrètement, la correction à faire, et le code à copier lorsque c'est possible.</p>
+    <div id="rFixes"></div>
+  </div>
+
+  <div class="sec" id="secOk">
+    <div class="sec-lab">Ce qui fonctionne</div>
+    <h2>Les points déjà conformes</h2>
+    <p class="intro">Ces éléments sont en place. Ils ne demandent aucune action, mais méritent d'être préservés lors des prochaines modifications du site.</p>
+    <div class="ok-list" id="rOk"></div>
+  </div>
+
+  <div class="sec" id="secPlan">
+    <div class="sec-lab">Par où commencer</div>
+    <h2>Plan d'action</h2>
+    <p class="intro">Si vous ne deviez faire que quelques corrections, faites celles-ci, dans cet ordre.</p>
+    <div class="plan" id="rPlan"></div>
+  </div>
+
+
+  <div class="sec" id="secHz">
+    <div class="sec-lab">Feuille de route</div>
+    <h2>Un plan sur trois mois, adapté à cette page</h2>
+    <p class="intro">Ce plan découle directement du diagnostic ci-dessus. Il ne s'agit pas d'un modèle générique : les priorités changent selon ce qui manque réellement sur votre site.</p>
+    <div class="horizons">
+      <div class="hz">
+        <div class="hz-top" style="background:var(--navy)"><b>Les 30 premiers jours</b><span>Corriger les fondations</span></div>
+        <div class="hz-body"><ul id="hz30"></ul></div>
+        <div class="hz-foot" id="hz30foot"></div>
+      </div>
+      <div class="hz">
+        <div class="hz-top" style="background:var(--blue)"><b>Les deux mois suivants</b><span>Construire la visibilité</span></div>
+        <div class="hz-body"><ul id="hz90"></ul></div>
+        <div class="hz-foot" id="hz90foot"></div>
+      </div>
+    </div>
+
+    <div class="autonomie">
+      <div class="aut seul">
+        <h4>✓ Ce que vous pouvez faire seul</h4>
+        <ul id="autSeul"></ul>
+      </div>
+      <div class="aut aide">
+        <h4>Ce qui demande du temps ou un regard extérieur</h4>
+        <ul id="autAide"></ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="outro">
+    <h2>Et ensuite ?</h2>
+    <p>Ce rapport couvre les signaux techniques qu'un moteur de réponse examine en premier. Il ne dit rien de la qualité éditoriale, de la profondeur des sujets traités ni de la concurrence sur vos mots-clés, qui pèsent tout autant. Si vous voulez en parler, l'échange est sans engagement.</p>
+    <a class="btn" href="https://www.techrepaircontent.com/devis" target="_blank" rel="noopener">Échanger sur ces résultats →</a>
+    <div class="sig">Gora Dieme · TechRepair Content<br/>contact@techrepaircontent.com · techrepaircontent.com</div>
+  </div>
+
+  <div class="note">
+    Méthode : analyse du code source public de la page à la date indiquée, portant sur les balises, les données structurées au format schema.org et l'accessibilité déclarée aux robots des moteurs de réponse via le fichier robots.txt. Ce diagnostic est automatisé et ne remplace pas un audit complet. Il ne reflète aucun score officiel d'un moteur de recherche ou d'un service d'intelligence artificielle.
+  </div>
+</div>
+
+<script>
+const $ = id => document.getElementById(id);
+const esc = s => String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+const URG = {1:{t:'Urgent',c:'t1',bg:'var(--red)'},2:{t:'Important',c:'t2',bg:'var(--orange)'},3:{t:'Confort',c:'t3',bg:'var(--grey)'}};
+
+function afficher(d){
+  const date = new Date().toLocaleDateString('fr-FR',{day:'numeric',month:'long',year:'numeric'});
+  $('rUrl').textContent = d.url;
+  $('rDate').textContent = 'Analyse réalisée le ' + date;
+  $('rScore').textContent = d.score + '%';
+
+  const couleur = d.score>=70 ? 'var(--green)' : (d.score>=40 ? 'var(--orange)' : 'var(--red)');
+  const fond    = d.score>=70 ? 'var(--green-bg)' : (d.score>=40 ? 'var(--orange-bg)' : 'var(--red-bg)');
+  const ring = $('ring');
+  ring.style.background = fond;
+  ring.style.border = '4px solid ' + couleur;
+  ring.style.color = couleur;
+
+  const nb = (d.aCorriger||[]).length;
+  const urgents = (d.aCorriger||[]).filter(c=>c.urgence===1).length;
+  $('rVerdict').textContent = d.score>=70 ? 'Bonne base technique'
+    : (d.score>=40 ? 'Préparation partielle' : 'Préparation à renforcer');
+  $('rResume').textContent = nb===0
+    ? "Aucun défaut technique détecté sur cette page. Les moteurs de réponse disposent de tout ce qu'il leur faut pour la comprendre et la citer."
+    : nb + (nb>1?' points sont à corriger':' point est à corriger')
+      + (urgents ? ', dont ' + urgents + (urgents>1?' prioritaires.':' prioritaire.') : '.')
+      + " Le détail et les correctifs figurent ci-dessous.";
+
+  // Corrections
+  const fixes = d.aCorriger || [];
+  $('secFix').style.display = fixes.length ? '' : 'none';
+  $('rFixes').innerHTML = fixes.map((c,i)=>{
+    const u = URG[c.urgence] || URG[2];
+    return '<div class="fix">'
+      + '<div class="fix-head">'
+      +   '<div class="fix-rank" style="background:'+u.bg+'">'+(i+1)+'</div>'
+      +   '<div class="fix-title"><b>'+esc(c.label)+'</b><div class="fix-tags">'
+      +     '<span class="tag '+u.c+'">'+u.t+'</span>'
+      +     (c.effort ? '<span class="tag t-eff">Environ '+esc(c.effort)+'</span>' : '')
+      +   '</div></div></div>'
+      + '<div class="fix-body">'
+      +   '<div class="constat"><b>Constat :</b> '+esc(c.detail)+'</div>'
+      +   (c.pourquoi ? '<h4>Ce que cela coûte</h4><p>'+esc(c.pourquoi)+'</p>' : '')
+      +   (c.correction ? '<h4>La correction</h4><p>'+esc(c.correction)+'</p>' : '')
+      +   (c.code ? '<div class="code-lab">À copier dans votre page</div><div class="code">'+esc(c.code)+'</div>' : '')
+      + '</div></div>';
+  }).join('');
+
+  // Conformes et sans objet
+  const ok = (d.checks||[]).filter(c=>c.passed===true);
+  const na = (d.checks||[]).filter(c=>c.passed===null);
+  $('secOk').style.display = (ok.length||na.length) ? '' : 'none';
+  $('rOk').innerHTML =
+      ok.map(c=>'<div class="ok-row"><span class="ic">✓</span><div><b>'+esc(c.label)+'</b><span>'+esc(c.detail)+'</span></div></div>').join('')
+    + na.map(c=>'<div class="ok-row na-row"><span class="ic">–</span><div><b>'+esc(c.label)+'</b><span>'+esc(c.detail)+'</span></div></div>').join('');
+
+  // Plan d'action
+  $('secPlan').style.display = fixes.length ? '' : 'none';
+  $('rPlan').innerHTML = fixes.slice(0,4).map((c,i)=>
+    '<div class="plan-item"><div class="plan-num">'+(i+1)+'</div><div class="plan-txt">'
+    + '<b>'+esc(c.correction || c.label)+'</b>'
+    + '<span>'+esc(c.label)+(c.effort?' · environ '+esc(c.effort):'')+'</span>'
+    + '</div></div>').join('');
+
+  construirePlan(d);
+  window.__dernierAudit = d;
+  $('sheet').style.display = '';
+}
+
+
+/* ══ Feuille de route déduite du diagnostic ══ */
+const PLAN30 = {
+  'Balise <title>':                {t:"Réécrire le titre de la page", d:"50 à 60 caractères contenant le terme recherché. Cinq minutes, effet immédiat sur le taux de clic.", seul:true},
+  'Meta description':              {t:"Rédiger la description pour Google", d:"150 à 160 caractères qui disent ce que le lecteur obtient.", seul:true},
+  'Balise H1':                     {t:"Remettre la hiérarchie des titres d'aplomb", d:"Un seul H1 par page, les autres titres en H2 et H3.", seul:true},
+  'Données structurées (JSON-LD)': {t:"Ajouter les données structurées", d:"C'est ce que les moteurs de réponse lisent en premier. Sans elles, votre contenu doit être deviné.", seul:false},
+  'Balisage Product / Offer':      {t:"Baliser prix et disponibilité", d:"Sans ce balisage, vos produits n'apparaissent pas dans les comparaisons générées par les IA.", seul:false},
+  'Accessibilité aux robots IA':   {t:"Revoir le robots.txt", d:"Décidez explicitement quels robots IA peuvent lire votre contenu. Un blocage involontaire vous rend invisible.", seul:true},
+  'Texte alternatif des images':   {t:"Décrire les images", d:"Une phrase utile par image, pour les moteurs et pour l'accessibilité.", seul:true},
+  'Balisage FAQPage':              {t:"Baliser la FAQ", d:"Trois à six questions réellement posées, avec des réponses autonomes.", seul:false}
+};
+
+function construirePlan(d){
+  const manques = new Set((d.aCorriger||[]).map(c=>c.label));
+  const a30 = [], a90 = [], seul = [], aide = [];
+
+  (d.aCorriger||[]).sort((a,b)=>a.urgence-b.urgence).forEach(c=>{
+    const p = PLAN30[c.label];
+    if (!p) return;
+    const li = '<li><b>'+esc(p.t)+'.</b> '+esc(p.d)+'</li>';
+    if (c.urgence <= 2) a30.push(li); else a90.push(li);
+    (p.seul ? seul : aide).push('<li>'+esc(p.t)+'</li>');
+  });
+
+  // Les deux mois suivants : ce qui relève du fond, pas de la technique
+  const structurees = !manques.has('Données structurées (JSON-LD)');
+  const faq = !manques.has('Balisage FAQPage');
+
+  a90.push('<li><b>Formuler des titres en questions.</b> Les moteurs de réponse apparient les questions des internautes avec vos intertitres. « Comment… », « Qu\'est-ce que… » sont repris tels quels.</li>');
+  a90.push('<li><b>Placer une réponse directe en début de page.</b> Quarante à cinquante mots qui répondent à la question du titre : c\'est ce passage que les IA citent le plus souvent.</li>');
+  if (structurees && faq)
+    a90.push('<li><b>Étendre le balisage aux autres pages.</b> Cette page est bien structurée, mais une seule page bien balisée ne suffit pas à installer une autorité sur un sujet.</li>');
+  a90.push('<li><b>Relier vos pages entre elles.</b> Une page isolée est peu explorée. Trois pages qui se citent mutuellement pèsent plus lourd que dix pages sans liens.</li>');
+  a90.push('<li><b>Mesurer, puis arbitrer.</b> Exportez vos données Search Console chaque mois : les requêtes où vous êtes entre la 8ᵉ et la 20ᵉ place sont celles qui rapportent le plus vite.</li>');
+
+  aide.push('<li>Structurer un plan éditorial par sujet</li>');
+  aide.push('<li>Rédiger des contenus de fond sourcés</li>');
+  seul.push('<li>Suivre les positions dans Search Console</li>');
+
+  $('hz30').innerHTML = a30.length ? a30.join('')
+    : '<li><b>Rien d\'urgent sur cette page.</b> Les fondations techniques sont en place, vous pouvez passer directement à l\'étape suivante.</li>';
+  $('hz90').innerHTML = a90.join('');
+
+  const heures = (d.aCorriger||[]).length;
+  $('hz30foot').textContent = a30.length
+    ? 'Charge estimée : une demi-journée à une journée de travail, selon votre familiarité avec le code.'
+    : 'Aucune correction technique bloquante à ce stade.';
+  $('hz90foot').textContent = "Charge estimée : deux à quatre jours par mois. C'est la partie qui demande de la constance plutôt que de la technique.";
+
+  $('autSeul').innerHTML = seul.join('') || '<li>Rien à signaler</li>';
+  $('autAide').innerHTML = aide.join('');
+  $('secHz').style.display = '';
+}
+
+
+/* Première phrase, sans couper sur un point interne comme « robots.txt » */
+function premierePhrase(t){
+  const m = String(t).match(/^[\s\S]*?[.!?](?=\s+[A-ZÀÉÈÊÎÔÛÇ]|\s*$)/);
+  return (m ? m[0] : String(t)).trim();
+}
+
+/* ══ Email prêt à envoyer ══ */
+function construireMail(d){
+  const prenom = ($('prenomInput').value.trim() || '[Prénom]');
+  const fixes = (d.aCorriger||[]).slice(0,3);
+  const nb = (d.aCorriger||[]).length;
+  const hote = (()=>{ try { return new URL(d.url).hostname.replace(/^www\./,''); } catch(e){ return d.url; } })();
+
+  let corps = 'Bonjour ' + prenom + ',\n\n';
+  corps += "J'ai passé une page de " + hote + " dans un outil d'audit que j'ai développé. Il mesure ce que Google et les moteurs de réponse comme ChatGPT ou Perplexity comprennent réellement d'une page.\n\n";
+  corps += 'Résultat : ' + d.score + '% de préparation technique';
+  corps += nb === 0
+    ? ". Rien à signaler, votre page est propre. C'est assez rare pour être souligné.\n\n"
+    : (nb === 1 ? ", avec un point à corriger.\n\n" : ", avec " + nb + " points à corriger.\n\n");
+
+  if (fixes.length) {
+    corps += 'Les plus importants :\n\n';
+    fixes.forEach((c,i)=>{
+      corps += (i+1) + '. ' + c.label + '\n';
+      corps += '   ' + (c.pourquoi ? premierePhrase(c.pourquoi) : c.detail) + '\n';
+      if (c.effort) corps += '   Correction : environ ' + c.effort + '.\n';
+      corps += '\n';
+    });
+  }
+
+  corps += "Vous trouverez le rapport complet en pièce jointe : pour chaque point, ce que le défaut coûte, la correction à faire et le code à copier. J'y ai ajouté une feuille de route sur trois mois construite à partir de ce diagnostic.\n\n";
+  corps += "La plupart de ces corrections se font sans aide extérieure, et le rapport est à vous, sans contrepartie. Si vous voulez en discuter ou si un point n'est pas clair, répondez simplement à ce message.\n\n";
+  corps += 'Bonne journée,\n\nGora Dieme\nTechRepair Content\nRédaction SEO et visibilité IA\ntechrepaircontent.com';
+
+  const objet = nb === 0
+    ? 'Votre page ' + hote + ' est bien structurée pour les IA'
+    : nb + (nb>1 ? ' points' : ' point') + ' à corriger sur ' + hote + ' (audit gratuit)';
+
+  $('mailTxt').value = 'Objet : ' + objet + '\n\n' + corps;
+  $('mailBox').style.display = 'block';
+  $('mailBox').scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+async function generer(){
+  const url = $('urlInput').value.trim();
+  const msg = $('msg');
+  if (!url) { msg.className='msg show err'; msg.textContent="Indiquez l'adresse de la page à analyser."; return; }
+  $('goBtn').disabled = true; $('goBtn').textContent = 'Analyse…';
+  msg.className='msg show info'; msg.textContent='Analyse de la page en cours…';
+  try {
+    const r = await fetch('/api/audit-ia', {
+      method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({url})
+    });
+    const d = await r.json();
+    if (!r.ok) throw new Error(d.error || 'analyse impossible');
+    afficher(d);
+    msg.className='msg'; 
+    history.replaceState(null,'', '?url='+encodeURIComponent(d.url));
+  } catch(e){
+    msg.className='msg show err'; msg.textContent = "Analyse impossible : " + e.message;
+  } finally {
+    $('goBtn').disabled=false; $('goBtn').textContent='Générer le rapport';
+  }
+}
+
+$('goBtn').addEventListener('click', generer);
+$('urlInput').addEventListener('keydown', e => { if(e.key==='Enter') generer(); });
+$('printBtn').addEventListener('click', () => window.print());
+$('mailBtn').addEventListener('click', () => {
+  if (!window.__dernierAudit) { const m=$('msg'); m.className='msg show err'; m.textContent="Générez d'abord le rapport."; return; }
+  construireMail(window.__dernierAudit);
+});
+$('closeMail').addEventListener('click', () => { $('mailBox').style.display='none'; });
+$('copyBtn').addEventListener('click', async () => {
+  try { await navigator.clipboard.writeText($('mailTxt').value); $('copyBtn').textContent='Copié ✓';
+        setTimeout(()=>{$('copyBtn').textContent='Copier le message';},1800); }
+  catch(e){ $('mailTxt').select(); document.execCommand('copy'); }
+});
+$('prenomInput').addEventListener('input', () => {
+  if ($('mailBox').style.display==='block' && window.__dernierAudit) construireMail(window.__dernierAudit);
+});
+
+const q = new URLSearchParams(location.search).get('url');
+if (q) { $('urlInput').value = q; generer(); }
+</script>
+</body>
+</html>
