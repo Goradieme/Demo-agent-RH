@@ -8,6 +8,8 @@
 const ORIGINES_AUTORISEES = [
   'https://www.techrepaircontent.com',
   'https://techrepaircontent.com',
+  'http://www.techrepaircontent.com',
+  'http://techrepaircontent.com',
 ];
 
 const MAX_MESSAGES = 12;        // historique envoyé au modèle
@@ -75,9 +77,9 @@ function limiteAtteinte(ip) {
 
 function appliquerCors(req, res) {
   const origine = req.headers.origin;
-  if (ORIGINES_AUTORISEES.includes(origine)) {
-    res.setHeader('Access-Control-Allow-Origin', origine);
-  }
+  // L'origine autorisée est renvoyée telle quelle ; pour les autres, '*' permet au
+  // navigateur de lire le message d'erreur (le POST reste refusé plus bas).
+  res.setHeader('Access-Control-Allow-Origin', ORIGINES_AUTORISEES.includes(origine) ? origine : '*');
   res.setHeader('Vary', 'Origin');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
