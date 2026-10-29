@@ -97,10 +97,47 @@ function nettoyer(messages) {
   return propres;
 }
 
+// Modèles essayés dans l'ordre : si le premier est refusé, on passe au suivant.
+const MODELES = ['claude-haiku-5-5', 'claude-sonnet-5-5', 'claude-sonnet-5'];
+
+async function appelerClaude(messages, maxTokens) {
+  let derniere = null;
+  for (const model of MODELES) {
+    const response = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': process.env.ANTHROPIC_API_KEY,
+        'anthropic-version': '2023-06-01',
+      },
+      body: JSON.stringify({ model, max_tokens: maxTokens, system: SYSTEM_PROMPT, messages }),
+    });
+    if (response.ok) return { ok: true, model, data: await response.json() };
+    let type = '';
+    try { type = (await response.json()).error.type; } catch (e) {}
+    derniere = { ok: false, model, status: response.status, type };
+    console.error('Erreur API Anthropic:', derniere);
+    // Seul un modèle introuvable ou refusé justifie d'essayer le suivant.
+    if (response.status !== 404 && response.status !== 400) break;
+  }
+  return derniere;
+}
+
 export default async function handler(req, res) {
   appliquerCors(req, res);
 
   if (req.method === 'OPTIONS') return res.status(204).end();
+
+  // Diagnostic : GET /api/assistant?diag=1 (ne renvoie aucune donnée sensible)
+  if (req.method === 'GET' && req.query && req.query.diag) {
+    const ip = (req.headers['x-forwarded-for'] || '').split(',')[0].trim() || 'inconnue';
+    if (limiteAtteinte(ip)) return res.status(429).json({ error: 'Trop de requêtes' });
+    const cle = Boolean(process.env.ANTHROPIC_API_KEY);
+    if (!cle) return res.status(200).json({ cle: false });
+    const r = await appelerClaude([{ role: 'user', content: 'Réponds juste OK.' }], 5);
+    return res.status(200).json({ cle: true, ok: r.ok, modele: r.model, statut: r.status || 200, type: r.type || null });
+  }
+
   if (req.method !== 'POST') return res.status(405).json({ error: 'Méthode non autorisée' });
 
   const origine = req.headers.origin;
@@ -117,28 +154,11 @@ export default async function handler(req, res) {
   if (!messages) return res.status(400).json({ error: 'Conversation invalide' });
 
   try {
-    const response = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'x-api-key': process.env.ANTHROPIC_API_KEY,
-        'anthropic-version': '2023-06-01',
-      },
-      body: JSON.stringify({
-        model: 'claude-sonnet-5',
-        max_tokens: 400,
-        system: SYSTEM_PROMPT,
-        messages,
-      }),
-    });
-
-    if (!response.ok) {
-      console.error('Erreur API Anthropic:', await response.text());
-      return res.status(502).json({ error: "Erreur lors de l'appel au modèle" });
+    const r = await appelerClaude(messages, 400);
+    if (!r.ok) {
+      return res.status(502).json({ error: "Erreur lors de l'appel au modèle", statut: r.status, type: r.type });
     }
-
-    const data = await response.json();
-    const bloc = (data.content || []).find((c) => c.type === 'text');
+    const bloc = (r.data.content || []).find((c) => c.type === 'text');
     return res.status(200).json({ reply: bloc ? bloc.text : '' });
   } catch (err) {
     console.error('Erreur serveur:', err);
