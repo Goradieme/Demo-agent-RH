@@ -84,6 +84,16 @@ function appliquerCors(req, res) {
   res.setHeader('Access-Control-Max-Age', '86400');
 }
 
+async function lireCorps(req) {
+  if (req.body && typeof req.body === 'object') return req.body;
+  if (typeof req.body === 'string') { try { return JSON.parse(req.body); } catch (e) { return null; } }
+  try {
+    let brut = '';
+    for await (const morceau of req) brut += morceau;
+    return brut ? JSON.parse(brut) : null;
+  } catch (e) { return null; }
+}
+
 function nettoyer(messages) {
   if (!Array.isArray(messages)) return null;
   const propres = messages
@@ -142,7 +152,7 @@ export default async function handler(req, res) {
 
   const origine = req.headers.origin;
   if (origine && !ORIGINES_AUTORISEES.includes(origine)) {
-    return res.status(403).json({ error: 'Origine non autorisée' });
+    return res.status(403).json({ error: 'Origine non autorisée', origine });
   }
 
   const ip = (req.headers['x-forwarded-for'] || '').split(',')[0].trim() || 'inconnue';
@@ -150,8 +160,9 @@ export default async function handler(req, res) {
     return res.status(429).json({ error: 'Trop de messages. Réessayez dans un moment ou écrivez à contact@techrepaircontent.com.' });
   }
 
-  const messages = nettoyer(req.body && req.body.messages);
-  if (!messages) return res.status(400).json({ error: 'Conversation invalide' });
+  const corps = await lireCorps(req);
+  const messages = nettoyer(corps && corps.messages);
+  if (!messages) return res.status(400).json({ error: 'Conversation invalide', recu: typeof req.body });
 
   try {
     const r = await appelerClaude(messages, 400);
