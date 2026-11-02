@@ -10,6 +10,7 @@ const ORIGINES_AUTORISEES = [
   'https://techrepaircontent.com',
   'http://www.techrepaircontent.com',
   'http://techrepaircontent.com',
+  'https://demo.techrepaircontent.com', // relais.html, chargé dans la bulle du site
 ];
 
 const MAX_MESSAGES = 12;        // historique envoyé au modèle
