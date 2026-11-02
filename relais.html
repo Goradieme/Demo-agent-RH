@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex">
+<title>Relais du chat Ted</title>
+</head>
+<body>
+<script>
+/* Relais invisible du chat Ted.
+ * La bulle de www.techrepaircontent.com charge cette page dans une iframe cachée
+ * et lui transmet les messages par postMessage. La page appelle /api/assistant
+ * depuis le même site que le serveur, comme la démo Ted, puis renvoie la réponse. */
+(function () {
+  'use strict';
+  var AUTORISEES = [
+    'https://www.techrepaircontent.com',
+    'https://techrepaircontent.com',
+    'http://www.techrepaircontent.com',
+    'http://techrepaircontent.com'
+  ];
+  window.addEventListener('message', function (e) {
+    if (AUTORISEES.indexOf(e.origin) === -1) return;
+    var q = e.data;
+    if (!q || q.type !== 'trc-question' || !q.id) return;
+    var source = e.source, origine = e.origin;
+    function repondre(r) { r.type = 'trc-reponse'; r.id = q.id; source.postMessage(r, origine); }
+    fetch('/api/assistant', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ messages: q.messages })
+    })
+      .then(function (r) {
+        return r.json().catch(function () { return {}; }).then(function (d) {
+          repondre({ ok: r.ok, statut: r.status, d: d });
+        });
+      })
+      .catch(function () { repondre({ ok: false, statut: 'relais', d: {} }); });
+  });
+  if (window.parent !== window) {
+    AUTORISEES.forEach(function (o) {
+      try { window.parent.postMessage({ type: 'trc-pret' }, o); } catch (err) {}
+    });
+  }
+})();
+</script>
+</body>
+</html>

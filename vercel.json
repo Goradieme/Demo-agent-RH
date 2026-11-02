@@ -10,5 +10,20 @@
       ],
       "destination": "/audit-ia.html"
     }
+  ],
+  "headers": [
+    {
+      "source": "/relais.html",
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "frame-ancestors https://www.techrepaircontent.com https://techrepaircontent.com"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=300"
+        }
+      ]
+    }
   ]
 }
